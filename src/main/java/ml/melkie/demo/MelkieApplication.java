@@ -9,8 +9,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 
@@ -36,10 +38,41 @@ public class MelkieApplication {
 		return "index";
 	}
 
-	@RequestMapping("/subscribe")
-	String subscribe() {
-		return "subscribe";
+	@PostMapping(value = "/")
+	public String create(@RequestParam("country") String country,
+						 @RequestParam("taste") String taste) {
+		//save title and content to repository
+		System.out.println(country+","+taste);
+		return "redirect:/#EatOutside";
 	}
+
+	@RequestMapping("/index2")
+	String index2(Model model) {
+		model.addAttribute("currentRestaurant", currentRestaurant);
+		return "index2";
+	}
+
+
+
+	@RequestMapping("/culture_and_tips")
+	String cultureAndTipsPage() {
+		return "CultureAndTips";
+	}
+
+	@RequestMapping("/tab")
+	String tab() {
+		return "tab";
+	}
+
+	@RequestMapping("/articles/{article_id}")
+	String findArticles(@PathVariable String article_id) {
+		return "portfolio-item" + article_id;
+	}
+
+    @RequestMapping("/articles")
+    String findArticless() {
+        return "portfolio-item" + "1";
+    }
 
 	static private void generateData(){
 //		Restaurant newRestaurant = new Restaurant("TimHoWan", "206 Bourke St, Melbourne VIC 3000", 50, 40, "timhowan.com.au", "666-666");
