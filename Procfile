@@ -1,1 +1,1 @@
-web: java -jar target/secure-spire-88777.jar
+web: java -jar target/demo-0.0.1-SNAPSHOT.jar
