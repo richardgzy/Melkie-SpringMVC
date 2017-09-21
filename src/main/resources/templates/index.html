@@ -209,15 +209,35 @@
                                     </div>
                                     <script>
                                         function likeButtonClicked() {
-                                            incrementValue()
+                                            var id = event.target.id;
+                                            switch(id){
+                                                case "thumbsUpButton1":
+                                                    incrementValue("likeNumber1")
+                                                    break;
+                                                case "thumbsUpButton2":
+                                                    incrementValue("likeNumber2")
+                                                    break;
+                                                case "thumbsUpButton3":
+                                                    incrementValue("likeNumber3")
+                                                    break;
+                                                case "thumbsUpButton4":
+                                                    incrementValue("likeNumber4")
+                                                    break;
+                                                case "thumbsUpButton5":
+                                                    incrementValue("likeNumber5")
+                                                    break;
+                                                default:
+                                                    break;
+                                            }
+
                                             alert("Thanks for your like!");
                                         }
 
-                                        function incrementValue() {
-                                            var value = parseInt(document.getElementById('likeNumber').value, 10);
+                                        function incrementValue(arg) {
+                                            var value = parseInt(document.getElementById(arg).innerText, 10);
                                             value = isNaN(value) ? 0 : value;
                                             value++;
-                                            document.getElementById('likeNumber').value = value;
+                                            document.getElementById(arg).innerText = value;
                                         }
                                     </script>
                                     <table class="table">
@@ -232,33 +252,33 @@
                                         <tr class="body-text">
                                             <td class="col-xs-2">RuYi Modern Chinese</td>
                                             <td class="col-xs-8">Catonese Food</td>
-                                            <td class="col-xs-2"><span id="likeNumber">86 </span><i
+                                            <td class="col-xs-2"><span id="likeNumber1">85</span><i
                                                     onclick="likeButtonClicked(this)"
-                                                    class="fa fa-thumbs-up like-button"></i></td>
+                                                    class="fa fa-thumbs-up like-button" id="thumbsUpButton1"></i></td>
                                         </tr>
                                         <tr class="body-text">
                                             <td class="col-xs-2">Crystal Jade Restaurant</td>
                                             <td class="col-xs-8">Catonese Food</td>
-                                            <td class="col-xs-2">44 <i onclick="likeButtonClicked(this)"
-                                                                       class="fa fa-thumbs-up like-button"></i></td>
+                                            <td class="col-xs-2"><span id="likeNumber2">57</span> <i onclick="likeButtonClicked(this)"
+                                                                       class="fa fa-thumbs-up like-button" id="thumbsUpButton2"></i></td>
                                         </tr>
                                         <tr class="body-text">
                                             <td class="col-xs-2">Tim Ho Wan</td>
                                             <td class="col-xs-8">Catonese Food</td>
-                                            <td class="col-xs-2">40 <i onclick="likeButtonClicked(this)"
-                                                                       class="fa fa-thumbs-up like-button"></i></td>
+                                            <td class="col-xs-2"><span id="likeNumber3">40</span> <i onclick="likeButtonClicked(this)"
+                                                                       class="fa fa-thumbs-up like-button" id="thumbsUpButton3"></i></td>
                                         </tr>
                                         <tr class="body-text">
                                             <td class="col-xs-2">Pacific BBQ Cafe</td>
                                             <td class="col-xs-8">Catonese Food</td>
-                                            <td>38 <i onclick="likeButtonClicked(this)"
-                                                      class="fa fa-thumbs-up like-button"></i></td>
+                                            <td><span id="likeNumber4">38</span> <i onclick="likeButtonClicked(this)"
+                                                      class="fa fa-thumbs-up like-button" id="thumbsUpButton4"></i></td>
                                         </tr>
                                         <tr class="body-text">
                                             <td class="col-xs-2">Flower Drum</td>
                                             <td class="col-xs-8">Catonese Food</td>
-                                            <td class="col-xs-2">35 <i onclick="likeButtonClicked(this)"
-                                                                       class="fa fa-thumbs-up like-button"></i></td>
+                                            <td class="col-xs-2"><span id="likeNumber5">18</span> <i onclick="likeButtonClicked(this)"
+                                                                       class="fa fa-thumbs-up like-button" id="thumbsUpButton5"></i></td>
                                         </tr>
                                         </tbody>
                                     </table>
