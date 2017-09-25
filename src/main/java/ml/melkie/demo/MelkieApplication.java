@@ -1,6 +1,8 @@
 package ml.melkie.demo;
 
+import ml.melkie.demo.model.APIManager;
 import ml.melkie.demo.model.Country;
+import ml.melkie.demo.model.JsonParser;
 import ml.melkie.demo.model.Restaurant;
 import ml.melkie.demo.model.Taste;
 import org.springframework.boot.SpringApplication;
@@ -29,6 +31,7 @@ public class MelkieApplication {
 
 	public static void main(String[] args) {
 		generateData();
+		APIManager.getRestaurantData("ChIJSS5p7clC1moRGPUzkMpfKpM");
 		SpringApplication.run(MelkieApplication.class, args);
 	}
 
