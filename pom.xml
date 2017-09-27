@@ -65,7 +65,7 @@
         </dependency>
 
 
-		<!--mybatis相关依赖-->
+		<!--mybatis dependecies-->
 		<dependency>
 			<groupId>org.mybatis</groupId>
 			<artifactId>mybatis</artifactId>
@@ -76,13 +76,13 @@
 			<artifactId>mybatis-spring</artifactId>
 			<version>1.2.3</version>
 		</dependency>
-		<!-- 导入Mysql数据库链接jar包 -->
+		<!-- MySql Database connector to jar-->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.37</version>
 		</dependency>
-		<!-- 连接池包 -->
+		<!-- pool package -->
 		<dependency>
 			<groupId>commons-dbcp</groupId>
 			<artifactId>commons-dbcp</artifactId>
@@ -93,8 +93,6 @@
 			<artifactId>commons-pool</artifactId>
 			<version>1.6</version>
 		</dependency>
-
-
     </dependencies>
 
 	<build>

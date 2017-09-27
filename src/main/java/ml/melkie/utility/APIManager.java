@@ -1,4 +1,4 @@
-package ml.melkie.demo.model;
+package ml.melkie.utility;
 
 import java.io.BufferedReader;
 import java.io.InputStream;

@@ -1,4 +1,4 @@
-package ml.melkie.demo.model;
+package ml.melkie.model;
 
 public class Restaurant {
     private String name;
@@ -8,8 +8,9 @@ public class Restaurant {
     private int likes;
     private String websiteLink;
     private String phoneNumber;
+    private String placeID;
 
-    public Restaurant(String name, String address, int seats, double googleRating, int likes, String websiteLink, String phoneNumber) {
+    public Restaurant(String name, String address, int seats, double googleRating, int likes, String websiteLink, String phoneNumber, String placeID) {
         this.name = name;
         this.address = address;
         this.seats = seats;
@@ -17,6 +18,7 @@ public class Restaurant {
         this.likes = likes;
         this.websiteLink = websiteLink;
         this.phoneNumber = phoneNumber;
+        this.placeID = placeID;
     }
 
     public String getName() {
@@ -73,5 +75,13 @@ public class Restaurant {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getPlaceID() {
+        return placeID;
+    }
+
+    public void setPlaceID(String placeID) {
+        this.placeID = placeID;
     }
 }

@@ -1,4 +1,4 @@
-package ml.melkie.demo;
+package ml.melkie;
 
 import org.apache.commons.dbcp.BasicDataSource;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -20,28 +20,39 @@ import java.net.URISyntaxException;
  * Created by SXY on 2016/1/26.
  */
 @Configuration
-@MapperScan(basePackages = "ml.melkie.demo")
-@ComponentScan(basePackages = "ml.melkie.demo")
+@MapperScan(basePackages = "ml.melkie.model")
+@ComponentScan(basePackages = "ml.melkie.model")
 public class WebContextConfig {
 
+//    @Bean
+//    public BasicDataSource getDataSource() throws URISyntaxException {
+//
+//        URI dbUri = new URI(System.getenv("CLEARDB_DATABASE_URL"));
+//
+//        String username = dbUri.getUserInfo().split(":")[0];
+//        String password = dbUri.getUserInfo().split(":")[1];
+//        String dbUrl = "jdbc:mysql://" + dbUri.getHost() + dbUri.getPath();
+//
+//        BasicDataSource basicDataSource = new BasicDataSource();
+//        basicDataSource.setUrl(dbUrl);
+//        basicDataSource.setUsername(username);
+//        basicDataSource.setPassword(password);
+//
+//        return basicDataSource;
+//    }
+
     @Bean
-    public BasicDataSource getDataSource() throws URISyntaxException {
-
-        URI dbUri = new URI(System.getenv("CLEARDB_DATABASE_URL"));
-
-        String username = dbUri.getUserInfo().split(":")[0];
-        String password = dbUri.getUserInfo().split(":")[1];
-        String dbUrl = "jdbc:mysql://" + dbUri.getHost() + dbUri.getPath();
-
-        BasicDataSource basicDataSource = new BasicDataSource();
-        basicDataSource.setUrl(dbUrl);
-        basicDataSource.setUsername(username);
-        basicDataSource.setPassword(password);
-
-        return basicDataSource;
+    public DataSource getDataSource() {
+        BasicDataSource dataSource = new BasicDataSource();
+//        数据库连接配置
+        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/Melkie");
+        dataSource.setUsername("root");
+        dataSource.setPassword("richard0625");
+        return dataSource;
     }
 
-    //    事务管理
+    //transaction management
     @Bean
     public DataSourceTransactionManager transactionManager() throws URISyntaxException {
         return new DataSourceTransactionManager(getDataSource());

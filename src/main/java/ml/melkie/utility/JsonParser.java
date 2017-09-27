@@ -1,14 +1,13 @@
-package ml.melkie.demo.model;
+package ml.melkie.utility;
 
-import org.json.JSONArray;
+import ml.melkie.model.Restaurant;
 import org.json.JSONObject;
-
-import java.util.ArrayList;
 
 public class JsonParser {
 
-    public static ArrayList<String> parseRestaurantinfo(String input, Restaurant incompleteRestaurant) {
-        ArrayList<String> resultArray = new ArrayList<>();
+    public static Restaurant parseRestaurantinfo(String input, Restaurant incompleteRestaurant) {
+//        ArrayList<String> resultArray = new ArrayList<>();
+
 
         try {
             JSONObject jo = new JSONObject(input);
@@ -19,10 +18,12 @@ public class JsonParser {
 
                 String formatted_address = result.getString("formatted_address");
                 Double google_rating = result.getDouble("rating");
-                String phone_number = result.getString("formatted_phone_number");
+//                String phone_number = result.getString("formatted_phone_number");
                 String website_link = result.getString("website");
 
-
+                incompleteRestaurant.setAddress(formatted_address);
+                incompleteRestaurant.setGoogleRating(google_rating);
+                incompleteRestaurant.setWebsiteLink(website_link);
 
             }else{
                 // return error from google
@@ -31,6 +32,6 @@ public class JsonParser {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return resultArray;
+        return incompleteRestaurant;
     }
 }

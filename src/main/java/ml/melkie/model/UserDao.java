@@ -1,4 +1,4 @@
-package ml.melkie.demo;
+package ml.melkie.model;
 
 
 import org.apache.ibatis.annotations.Select;

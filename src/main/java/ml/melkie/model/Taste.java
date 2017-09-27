@@ -1,4 +1,4 @@
-package ml.melkie.demo.model;
+package ml.melkie.model;
 
 import java.util.ArrayList;
 

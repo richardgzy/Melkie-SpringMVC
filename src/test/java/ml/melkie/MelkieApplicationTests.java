@@ -1,4 +1,4 @@
-package ml.melkie.demo;
+package ml.melkie;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

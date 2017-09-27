@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 
     <!-- /.website title -->
@@ -77,7 +77,7 @@
 
                     <!-- /.main title -->
                     <h1 class="wow fadeInLeft" style="padding-top: 100px">
-                        <strong>Find Authentic Home<br/> Like Food</strong>
+                        <strong>Find Authentic Food<br/> Like Home</strong>
                     </h1>
 
                     <!-- /.header paragraph -->
@@ -107,40 +107,52 @@
                             <input type="hidden" name="taste">
                             <div class="form-group">
                                 <div class="row">
-                                    <div class="col-sm-4">
-                                        <h2>Step 1:</h2>
+                                    <div class="col-sm-9">
+                                        <div class="label" style="font-size: x-large">Step 1. Select Your Country:</div>
                                     </div>
-                                    <div class="col-sm-8">
-                                        <div class="dropdown" style="padding-top: 7px">
-                                            <a aria-expanded="false" aria-haspopup="true" role="button"
-                                               data-toggle="dropdown" class="dropdown-toggle" href="#"
-                                               style="color: #FFFFFF; font-size: x-large;align-content: center">
-                                                <span id="selected1">China</span><span
-                                                    class="caret"></span></a>
-                                            <ul class="dropdown-menu">
-                                                <li><a href="#">China</a></li>
-                                                <!--<li><a href="#">Pakistan</a></li>-->
-                                            </ul>
+                                    <div class="col-sm-3" style="align-content: flex-start">
+                                        <!--<div class="dropdown" style="padding-top: 7px">-->
+                                        <!--<a aria-expanded="false" aria-haspopup="true" role="button"-->
+                                        <!--data-toggle="dropdown" class="dropdown-toggle" href="#"-->
+                                        <!--style="color: #FFFFFF; font-size: x-large;align-content: center">-->
+                                        <!--<span id="selected1">China</span><span-->
+                                        <!--class="caret"></span></a>-->
+                                        <!--<ul class="dropdown-menu">-->
+                                        <!--<li><a href="#">China</a></li>-->
+                                        <!--&lt;!&ndash;<li><a href="#">Pakistan</a></li>&ndash;&gt;-->
+                                        <!--</ul>-->
+                                        <!--</div>-->
+
+                                        <div th:if="${countryList != null and not #lists.isEmpty(countryList)}">
+                                            <select>
+                                                <option th:each="country : ${countryList}"
+                                                        th:value="${country}"
+                                                        th:text="${country.country_name}">Country
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div th:if="${countryList == null and #lists.isEmpty(countryList)}">
+                                            <div>"No countries were found."</div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-sm-4">
-                                        <h2>Step 2:</h2>
-                                    </div>
-                                    <div class="col-sm-8">
-                                        <div class="dropdown" style="padding-top: 7px">
-                                            <a aria-expanded="false" aria-haspopup="true" role="button"
-                                               data-toggle="dropdown" class="dropdown-toggle" href="#"
-                                               style="color: #FFFFFF; font-size: x-large">
-                                                <span id="selected2">Cantonese Food</span><span
-                                                    class="caret"></span></a>
-                                            <ul class="dropdown-menu">
-                                                <li><a href="#">Cantonese Food</a></li>
-                                                <!--<li><a href="#">Sichuan Food</a></li>-->
-                                            </ul>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <h2>Step 2:</h2>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <div class="dropdown" style="padding-top: 7px">
+                                                <a aria-expanded="false" aria-haspopup="true" role="button"
+                                                   data-toggle="dropdown" class="dropdown-toggle" href="#"
+                                                   style="color: #FFFFFF; font-size: x-large">
+                                                    <span id="selected2">Cantonese Food</span><span
+                                                        class="caret"></span></a>
+                                                <ul class="dropdown-menu">
+                                                    <li><a href="#">Cantonese Food</a></li>
+                                                    <!--<li><a href="#">Sichuan Food</a></li>-->
+                                                </ul>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -210,7 +222,7 @@
                                     <script>
                                         function likeButtonClicked() {
                                             var id = event.target.id;
-                                            switch(id){
+                                            switch (id) {
                                                 case "thumbsUpButton1":
                                                     incrementValue("likeNumber1")
                                                     break;
@@ -259,26 +271,30 @@
                                         <tr class="body-text">
                                             <td class="col-xs-2">Crystal Jade Restaurant</td>
                                             <td class="col-xs-8">Catonese Food</td>
-                                            <td class="col-xs-2"><span id="likeNumber2">57</span> <i onclick="likeButtonClicked(this)"
-                                                                       class="fa fa-thumbs-up like-button" id="thumbsUpButton2"></i></td>
+                                            <td class="col-xs-2"><span id="likeNumber2">57</span> <i
+                                                    onclick="likeButtonClicked(this)"
+                                                    class="fa fa-thumbs-up like-button" id="thumbsUpButton2"></i></td>
                                         </tr>
                                         <tr class="body-text">
                                             <td class="col-xs-2">Tim Ho Wan</td>
                                             <td class="col-xs-8">Catonese Food</td>
-                                            <td class="col-xs-2"><span id="likeNumber3">40</span> <i onclick="likeButtonClicked(this)"
-                                                                       class="fa fa-thumbs-up like-button" id="thumbsUpButton3"></i></td>
+                                            <td class="col-xs-2"><span id="likeNumber3">40</span> <i
+                                                    onclick="likeButtonClicked(this)"
+                                                    class="fa fa-thumbs-up like-button" id="thumbsUpButton3"></i></td>
                                         </tr>
                                         <tr class="body-text">
                                             <td class="col-xs-2">Pacific BBQ Cafe</td>
                                             <td class="col-xs-8">Catonese Food</td>
                                             <td><span id="likeNumber4">38</span> <i onclick="likeButtonClicked(this)"
-                                                      class="fa fa-thumbs-up like-button" id="thumbsUpButton4"></i></td>
+                                                                                    class="fa fa-thumbs-up like-button"
+                                                                                    id="thumbsUpButton4"></i></td>
                                         </tr>
                                         <tr class="body-text">
                                             <td class="col-xs-2">Flower Drum</td>
                                             <td class="col-xs-8">Catonese Food</td>
-                                            <td class="col-xs-2"><span id="likeNumber5">18</span> <i onclick="likeButtonClicked(this)"
-                                                                       class="fa fa-thumbs-up like-button" id="thumbsUpButton5"></i></td>
+                                            <td class="col-xs-2"><span id="likeNumber5">18</span> <i
+                                                    onclick="likeButtonClicked(this)"
+                                                    class="fa fa-thumbs-up like-button" id="thumbsUpButton5"></i></td>
                                         </tr>
                                         </tbody>
                                     </table>
