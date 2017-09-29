@@ -1,6 +1,8 @@
 package ml.melkie.model;
 
-public class Country {
+import java.io.Serializable;
+
+public class Country implements Serializable {
 
     private Integer country_id;
     private String country_name;

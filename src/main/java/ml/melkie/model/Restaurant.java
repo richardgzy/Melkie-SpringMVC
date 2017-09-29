@@ -1,56 +1,73 @@
 package ml.melkie.model;
 
 public class Restaurant {
-    private String name;
-    private String address;
-    private int seats;
-    private double googleRating;
-    private int likes;
+    private Integer restaurant_id;
+    private String restaurant_name;
+    private String restaurant_address;
+    private Integer restaurant_seats;
+    private double restaurant_googleRating;
+    private Integer likes;
     private String websiteLink;
     private String phoneNumber;
-    private String placeID;
+    private String restaurant_placeID;
 
-    public Restaurant(String name, String address, int seats, double googleRating, int likes, String websiteLink, String phoneNumber, String placeID) {
-        this.name = name;
-        this.address = address;
-        this.seats = seats;
-        this.googleRating = googleRating;
+    public Restaurant(Integer restaurant_id, String restaurant_name, Integer likes, String restaurant_placeID) {
+        this.restaurant_id = restaurant_id;
+        this.restaurant_name = restaurant_name;
+        this.likes = likes;
+        this.restaurant_placeID = restaurant_placeID;
+    }
+
+    public Restaurant(Integer restaurant_id, String restaurant_name, String restaurant_address, int restaurant_seats, double restaurant_googleRating, int likes, String websiteLink, String phoneNumber, String restaurant_placeID) {
+        this.restaurant_id = restaurant_id;
+        this.restaurant_name = restaurant_name;
+        this.restaurant_address = restaurant_address;
+        this.restaurant_seats = restaurant_seats;
+        this.restaurant_googleRating = restaurant_googleRating;
         this.likes = likes;
         this.websiteLink = websiteLink;
         this.phoneNumber = phoneNumber;
-        this.placeID = placeID;
+        this.restaurant_placeID = restaurant_placeID;
     }
 
-    public String getName() {
-        return name;
+    public Integer getRestaurant_id() {
+        return restaurant_id;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setRestaurant_id(Integer restaurant_id) {
+        this.restaurant_id = restaurant_id;
     }
 
-    public String getAddress() {
-        return address;
+    public String getRestaurant_name() {
+        return restaurant_name;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setRestaurant_name(String restaurant_name) {
+        this.restaurant_name = restaurant_name;
     }
 
-    public int getSeats() {
-        return seats;
+    public String getRestaurant_address() {
+        return restaurant_address;
     }
 
-    public void setSeats(int seats) {
-        this.seats = seats;
+    public void setRestaurant_address(String restaurant_address) {
+        this.restaurant_address = restaurant_address;
     }
 
-    public double getGoogleRating() {
-        return googleRating;
+    public int getRestaurant_seats() {
+        return restaurant_seats;
     }
 
-    public void setGoogleRating(double googleRating) {
-        this.googleRating = googleRating;
+    public void setRestaurant_seats(int restaurant_seats) {
+        this.restaurant_seats = restaurant_seats;
+    }
+
+    public double getRestaurant_googleRating() {
+        return restaurant_googleRating;
+    }
+
+    public void setRestaurant_googleRating(double restaurant_googleRating) {
+        this.restaurant_googleRating = restaurant_googleRating;
     }
 
     public int getLikes() {
@@ -77,11 +94,11 @@ public class Restaurant {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getPlaceID() {
-        return placeID;
+    public String getRestaurant_placeID() {
+        return restaurant_placeID;
     }
 
-    public void setPlaceID(String placeID) {
-        this.placeID = placeID;
+    public void setRestaurant_placeID(String restaurant_placeID) {
+        this.restaurant_placeID = restaurant_placeID;
     }
 }

@@ -88,21 +88,14 @@
                         </br>
                         <h2>Let Us Guide You To the Taste of Home</h2>
                     </div>
-
-                    <!--&lt;!&ndash; /.header button &ndash;&gt;-->
-                    <!--<div class="head-btn wow fadeInLeft">-->
-                    <!--<a href="#feature" class="btn-primary">Features</a>-->
-                    <!--<a href="#download" class="btn-default">Download</a>-->
-                    <!--</div>-->
-
                 </div>
 
-                <!-- /.signup form -->
+                <!-- /.selection form -->
                 <div class="col-md-5">
 
                     <div class="signup-header wow fadeInUp">
                         <h3 class="form-title text-left">Let us know about your taste</h3>
-                        <form class="form-header" role="form" method="POST" id="#">
+                        <form class="form-header" role="form" method="post" id="#" action="/result">
                             <input type="hidden" name="country">
                             <input type="hidden" name="taste">
                             <div class="form-group">
@@ -123,10 +116,18 @@
                                         <!--</ul>-->
                                         <!--</div>-->
 
+                                        <!--<div th:if="${countryList != null and not #lists.isEmpty(countryList)}">-->
+                                            <!--<select id="theCountry" name="theCountry" th:field="*{submitCountry}" th:remove="all-but-first">-->
+                                                <!--<option th:each="country : ${countryList}"-->
+                                                        <!--th:value="${country}"-->
+                                                        <!--th:text="${country.country_name}">Country-->
+                                                <!--</option>-->
+                                            <!--</select>-->
+                                        <!--</div>-->
                                         <div th:if="${countryList != null and not #lists.isEmpty(countryList)}">
-                                            <select>
+                                            <select id="theCountry" name="theCountry">
                                                 <option th:each="country : ${countryList}"
-                                                        th:value="${country}"
+                                                        th:value="${country.country_name}"
                                                         th:text="${country.country_name}">Country
                                                 </option>
                                             </select>
@@ -136,32 +137,33 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-sm-4">
-                                            <h2>Step 2:</h2>
-                                        </div>
-                                        <div class="col-sm-8">
-                                            <div class="dropdown" style="padding-top: 7px">
-                                                <a aria-expanded="false" aria-haspopup="true" role="button"
-                                                   data-toggle="dropdown" class="dropdown-toggle" href="#"
-                                                   style="color: #FFFFFF; font-size: x-large">
-                                                    <span id="selected2">Cantonese Food</span><span
-                                                        class="caret"></span></a>
-                                                <ul class="dropdown-menu">
-                                                    <li><a href="#">Cantonese Food</a></li>
-                                                    <!--<li><a href="#">Sichuan Food</a></li>-->
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <!--<div class="form-group">-->
+                                    <!--<div class="row">-->
+                                        <!--<div class="col-sm-4">-->
+                                            <!--<h2>Step 2:</h2>-->
+                                        <!--</div>-->
+                                        <!--<div class="col-sm-8">-->
+                                            <!--<div class="dropdown" style="padding-top: 7px">-->
+                                                <!--<a aria-expanded="false" aria-haspopup="true" role="button"-->
+                                                   <!--data-toggle="dropdown" class="dropdown-toggle" href="#"-->
+                                                   <!--style="color: #FFFFFF; font-size: x-large">-->
+                                                    <!--<span id="selected2">Cantonese Food</span><span-->
+                                                        <!--class="caret"></span></a>-->
+                                                <!--<ul class="dropdown-menu">-->
+                                                    <!--<li><a href="#">Cantonese Food</a></li>-->
+                                                    <!--&lt;!&ndash;<li><a href="#">Sichuan Food</a></li>&ndash;&gt;-->
+                                                <!--</ul>-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
                             </div>
                             <div class="form-group last">
-                                <!--<button type="submit" class="btn btn-warning btn-block btn-lg" value="Step 3. Explore!">-->
-                                <a href="#EatOutside" class="btn">
-                                    <div style="padding-top: 11px; font-size: x-large">Step 3. Explore!</div>
-                                </a>
+                                <button type="submit" class="btn btn-warning btn-block btn-lg"
+                                        value="Step 3. Explore!">Explore!</button>
+                                <!--<a href="#EatOutside" class="btn">-->
+                                <!--<div style="padding-top: 11px; font-size: x-large">Step 3. Explore!</div>-->
+                                <!--</a>-->
                             </div>
 
                             <p class="privacy text-center">Enter your region and find food like home in Melbourne</p>
@@ -169,310 +171,11 @@
                     </div>
                 </div>
             </div>
-            <!--tab switch-->
-            <ul class="nav nav-tabs nav-justified">
-                <li class="active"><a href="#">Eat out</a></li>
-                <li><a href="index2">Stay in</a></li>
-            </ul>
         </div>
     </div>
 </div>
 
-<!-- /.download section -->
-<div class="tab-content">
-    <div id="EatOutside" class="tab-pane fade in active">
-        <div class="action fullscreen parallax" style="background-image:url('images/brooke-lark-230140.jpg');"
-             data-img-width="2000" data-img-height="1333" data-diff="100">
-            <div class="overlay">
 
-                <!-- Add Google Map -->
-                <!--<div id="googleMap" style="height:300px;width:100%;"></div>-->
-                <!--<script>-->
-                <!--function myMap() {-->
-                <!--var myCenter = new google.maps.LatLng(-37.8770, 145.0443);-->
-                <!--var mapProp = {-->
-                <!--center: myCenter,-->
-                <!--zoom: 12,-->
-                <!--scrollwheel: false,-->
-                <!--draggable: true,-->
-                <!--mapTypeId: google.maps.MapTypeId.ROADMAP-->
-                <!--};-->
-                <!--var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);-->
-                <!--var marker = new google.maps.Marker({position: myCenter});-->
-                <!--marker.setMap(map);-->
-                <!--}-->
-                <!--</script>-->
-                <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBkJppdWRHQbcAPUfFN7Zva6tslZk5qyX4&callback=myMap"></script>-->
-
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3152.023602373163!2d144.96491711523606!3d-37.81291614176772!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642c9ed692e49%3A0x932a5fca9033f518!2sTim+Ho+Wan!5e0!3m2!1sen!2sau!4v1505807780136"
-                        width="100%" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
-
-
-                <div id="detailView" class="container">
-                    <div class="row">
-                        <div class="col-md-6 col-sm-6">
-                            <div class="row">
-                                <div class="panel panel-default">
-                                    <div class="panel-heading list-heading">
-    <span style="font-size: xx-large">
-    <strong>Monthly User Ranking</strong>
-    </span>
-                                        <span></span>
-                                    </div>
-                                    <script>
-                                        function likeButtonClicked() {
-                                            var id = event.target.id;
-                                            switch (id) {
-                                                case "thumbsUpButton1":
-                                                    incrementValue("likeNumber1")
-                                                    break;
-                                                case "thumbsUpButton2":
-                                                    incrementValue("likeNumber2")
-                                                    break;
-                                                case "thumbsUpButton3":
-                                                    incrementValue("likeNumber3")
-                                                    break;
-                                                case "thumbsUpButton4":
-                                                    incrementValue("likeNumber4")
-                                                    break;
-                                                case "thumbsUpButton5":
-                                                    incrementValue("likeNumber5")
-                                                    break;
-                                                default:
-                                                    break;
-                                            }
-
-                                            alert("Thanks for your like!");
-                                        }
-
-                                        function incrementValue(arg) {
-                                            var value = parseInt(document.getElementById(arg).innerText, 10);
-                                            value = isNaN(value) ? 0 : value;
-                                            value++;
-                                            document.getElementById(arg).innerText = value;
-                                        }
-                                    </script>
-                                    <table class="table">
-                                        <thead>
-                                        <tr>
-                                            <th class="col-xs-6">Name</th>
-                                            <th class="col-xs-3">Category</th>
-                                            <th class="col-xs-3">Likes</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr class="body-text">
-                                            <td class="col-xs-2">RuYi Modern Chinese</td>
-                                            <td class="col-xs-8">Catonese Food</td>
-                                            <td class="col-xs-2"><span id="likeNumber1">85</span><i
-                                                    onclick="likeButtonClicked(this)"
-                                                    class="fa fa-thumbs-up like-button" id="thumbsUpButton1"></i></td>
-                                        </tr>
-                                        <tr class="body-text">
-                                            <td class="col-xs-2">Crystal Jade Restaurant</td>
-                                            <td class="col-xs-8">Catonese Food</td>
-                                            <td class="col-xs-2"><span id="likeNumber2">57</span> <i
-                                                    onclick="likeButtonClicked(this)"
-                                                    class="fa fa-thumbs-up like-button" id="thumbsUpButton2"></i></td>
-                                        </tr>
-                                        <tr class="body-text">
-                                            <td class="col-xs-2">Tim Ho Wan</td>
-                                            <td class="col-xs-8">Catonese Food</td>
-                                            <td class="col-xs-2"><span id="likeNumber3">40</span> <i
-                                                    onclick="likeButtonClicked(this)"
-                                                    class="fa fa-thumbs-up like-button" id="thumbsUpButton3"></i></td>
-                                        </tr>
-                                        <tr class="body-text">
-                                            <td class="col-xs-2">Pacific BBQ Cafe</td>
-                                            <td class="col-xs-8">Catonese Food</td>
-                                            <td><span id="likeNumber4">38</span> <i onclick="likeButtonClicked(this)"
-                                                                                    class="fa fa-thumbs-up like-button"
-                                                                                    id="thumbsUpButton4"></i></td>
-                                        </tr>
-                                        <tr class="body-text">
-                                            <td class="col-xs-2">Flower Drum</td>
-                                            <td class="col-xs-8">Catonese Food</td>
-                                            <td class="col-xs-2"><span id="likeNumber5">18</span> <i
-                                                    onclick="likeButtonClicked(this)"
-                                                    class="fa fa-thumbs-up like-button" id="thumbsUpButton5"></i></td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-1 col-sm-1">
-                        </div>
-                        <div class="col-md-5 col-sm-5">
-                            <div class="card">
-                                <div class="card-block">
-    <span>
-    <h3 class="card-title detail-restaurant-name orange" th:text="${currentRestaurant.name}">Tim Ho Wan</h3>
-        <!--<span style="text-align: right">40 &nbsp<i onclick="likeButtonClicked(this)" class="fa fa-thumbs-up like-button"></i></span>-->
-    </span>
-                                    <div>
-                                        <i class="fa fa-location-arrow detail-icons" style="font-size: 30px"></i>
-                                        <span class="card-subtitle text-muted detail-address"><a href="#"
-                                                                                                 class="card-link">206 Bourke St, Melbourne VIC 3000</a></span>
-                                    </div>
-
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12 col-sm-12">
-                                        <div id="Carousel" class="carousel slide">
-
-                                            <ol class="carousel-indicators" style="padding-top: -20px">
-                                                <li data-target="#Carousel" data-slide-to="0" class="active"></li>
-                                                <li data-target="#Carousel" data-slide-to="1"></li>
-                                            </ol>
-
-                                            <!-- Carousel items -->
-                                            <div class="carousel-inner">
-
-                                                <div class="item active">
-                                                    <div class="row">
-                                                        <div class="col-md-4"><a href="#" class="thumbnail"><img
-                                                                src="images/Cha_Siu_Bao.jpg" alt="Image"></a></div>
-                                                        <div class="col-md-4"><a href="#" class="thumbnail"><img
-                                                                src="images/Roast%20goose.jpg" alt="Image"></a></div>
-                                                        <div class="col-md-4"><a href="#" class="thumbnail"
-                                                                                 style="width: 115px;"><img
-                                                                src="images/Beef%20Chow%20Fun%20.jpg" alt="Image"></a>
-                                                        </div>
-                                                    </div><!--.row-->
-                                                </div><!--.item-->
-
-                                                <div class="item">
-                                                    <div class="row">
-                                                        <div class="col-md-4"><a href="#" class="thumbnail"><img
-                                                                src="images/Cha_Siu_Bao.jpg" alt="Image"></a></div>
-                                                        <div class="col-md-4"><a href="#" class="thumbnail"><img
-                                                                src="images/Roast%20goose.jpg" alt="Image"></a></div>
-                                                        <div class="col-md-4"><a href="#" class="thumbnail"
-                                                                                 style="width: 115px;"><img
-                                                                src="images/Beef%20Chow%20Fun%20.jpg" alt="Image"></a>
-                                                        </div>
-                                                    </div><!--.row-->
-                                                </div><!--.item-->
-
-                                            </div><!--.carousel-inner-->
-                                            <!--<a data-slide="prev" href="#Carousel" class="left carousel-control"><</a>-->
-                                            <!--<a data-slide="next" href="#Carousel" class="right carousel-control">></a>-->
-                                        </div><!--.Carousel-->
-
-                                    </div>
-                                </div>
-                                <div class="card-block">
-    <span>
-    <span style="font-size: xx-large">"</span>
-    <span class="card-text">A authentic Cantonese Restaurant, famous for it's Dim Sum and Cha Siu Bao</span>
-    <span style="font-size: xx-large">"</span>
-    </span>
-                                    <!--<p class="card-text">-->
-                                    <!--<p>Open Hour: Monday: 12:00-15:00, 18:00-23:00-->
-                                    <!--<br/>Tuesday: 12:00-15:00, 18:00-23:00-->
-                                    <!--<br/>Wednesday: 12:00-15:00, 18:00-23:00-->
-                                    <!--<br/>Thursday: 12:00-15:00, 18:00-23:00-->
-                                    <!--<br/>Friday: 12:00-15:00, 18:00-23:00-->
-                                    <!--<br/>Saturday: 12:00-15:00, 18:00-23:00-->
-                                    <!--<br/>Sunday: 18:00-22:30</p>-->
-
-                                    <div class="row" style="padding-top: 20px">
-                                        <div class="col-md-6 col-sm-6">
-    <span>
-    <i class="fa fa-star detail-icons" aria-hidden="true"></i>
-    <span class="card-text"> Google Rating: </span>
-    <i class="fa fa-star detail-icons" aria-hidden="true"></i>
-    <i class="fa fa-star detail-icons" aria-hidden="true"></i>
-    <i class="fa fa-star detail-icons" aria-hidden="true"></i>
-    <i class="fa fa-star-half-o detail-icons" aria-hidden="true"></i>
-    <span class="card-text" th:text="${currentRestaurant.googleRating}"></span>
-    </span>
-                                        </div>
-                                        <div class="col-md-6 col-sm-6">
-    <span>
-    <i class="fa fa-phone-square detail-icons"></i>
-    <span class="card-text"> Phone Number: </span>
-    <span th:text="${currentRestaurant.phoneNumber}">123-456-7</span>
-    </span>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6 col-sm-6">
-    <span>
-    <i class="fa fa-cutlery detail-icons" aria-hidden="true"></i>
-    <span class="card-text"> Seats Available: </span>
-    <span th:text="${currentRestaurant.seats}">30</span>
-    </span>
-                                        </div>
-                                        <div class="col-md-6 col-sm-6">
-    <span>
-    <i class="fa fa-external-link detail-icons"></i>
-    <a th:text="${currentRestaurant.websiteLink}" href="http://timhowan.com.au" class="card-link"> Website link</a>
-    </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <div id="CookAtHome" class="tab-pane fade">
-        <h5>Making Cantonese Food at Home? Here are some must have in Melbourne!</h5>
-        <div class="row" style="padding-top: 10px">
-            <div class="col-lg-2">
-                <div class="card h-70">
-                    <img class="card-img-top" src="../region_search_pic/Cantonese_Food/ingredient/Dark Soy sauce.jpg"
-                         alt="Cha Siu Bao (Barbecue Pork Bun)" height="100px" width="100%">
-                    <div class="card-body">
-                        <h6 class="card-text">Dark Soy Sauce</h6>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-2">
-                <div class="card h-70">
-                    <img class="card-img-top" src="../region_search_pic/Cantonese_Food/ingredient/Light soy sauce.jpg"
-                         alt="Beef Chow Fun (Beef Fried Noodles)" height="100px" width="100%">
-                    <div class="card-body">
-                        <h6 class="card-text">Light Soy Sauce</h6>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-2">
-                <div class="card h-70">
-                    <img class="card-img-top" src="../region_search_pic/Cantonese_Food/ingredient/Oyster sauce.jpg"
-                         alt="Oyster sauce" height="100px" width="100%">
-                    <div class="card-body">
-                        <h6 class="card-text">Oyster Sauce</h6>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-2">
-                <div class="card h-70">
-                    <img class="card-img-top" src="../region_search_pic/Cantonese_Food/ingredient/Seafood sauce.jpg"
-                         alt="Seafood sauce" height="100px" width="100%">
-                    <div class="card-body">
-                        <h6 class="card-text">Seafood Sauce</h6>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-2">
-                <div class="card h-70">
-                    <img class="card-img-top" src="../region_search_pic/Cantonese_Food/ingredient/Shrimp sauce.jpg"
-                         alt="Shrimp sauce" height="100px" width="100%">
-                    <div class="card-body">
-                        <h6 class="card-text">Shrimp Sauce</h6>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 <!-- /.footer -->
 <footer id="footer">
     <div class="container">

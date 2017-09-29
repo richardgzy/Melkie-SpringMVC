@@ -95,3 +95,8 @@ body {
     width: 250px;
     height: 250px;
 }
+
+.table tr:hover{
+    cursor: pointer;
+    background-color: #ccc;
+}

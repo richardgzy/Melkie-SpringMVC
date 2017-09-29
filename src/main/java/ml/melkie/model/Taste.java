@@ -4,27 +4,37 @@ import java.util.ArrayList;
 
 public class Taste {
 
-    private String name;
-    private ArrayList<Restaurant> containRestaurant;
+    private Integer taste_id;
+    private String taste_name;
+    private Integer country_id;
 
-    public Taste(String name, ArrayList<Restaurant> containRestaurant) {
-        this.name = name;
-        this.containRestaurant = containRestaurant;
+    public Taste(Integer taste_id, String taste_name, Integer country_id) {
+        this.taste_id = taste_id;
+        this.taste_name = taste_name;
+        this.country_id = country_id;
     }
 
-    public String getName() {
-        return name;
+    public Integer getTaste_id() {
+        return taste_id;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTaste_id(Integer taste_id) {
+        this.taste_id = taste_id;
     }
 
-    public ArrayList<Restaurant> getContainRestaurant() {
-        return containRestaurant;
+    public String getTaste_name() {
+        return taste_name;
     }
 
-    public void setContainRestaurant(ArrayList<Restaurant> containRestaurant) {
-        this.containRestaurant = containRestaurant;
+    public void setTaste_name(String taste_name) {
+        this.taste_name = taste_name;
+    }
+
+    public Integer getCountry_id() {
+        return country_id;
+    }
+
+    public void setCountry_id(Integer country_id) {
+        this.country_id = country_id;
     }
 }

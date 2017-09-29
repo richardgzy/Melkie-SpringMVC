@@ -9,4 +9,7 @@ import java.util.ArrayList;
 public interface CountryDao {
     @Select("select * from country")
     ArrayList<Country> getAllCountry();
+
+    @Select("select * from country where country_id = #{id}")
+    Country getCountryById(Integer id);
 }

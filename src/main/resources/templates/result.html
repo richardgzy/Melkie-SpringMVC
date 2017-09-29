@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+
+    <!-- /.website title -->
+    <title>Melkie - Find Authentic Food Like Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <!-- CSS Files -->
+    <link href="/css/bootstrap.css" rel="stylesheet" media="screen">
+    <link href="/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/fonts/icon-7-stroke/css/pe-icon-7-stroke.css" rel="stylesheet">
+    <link href="/css/animate.css" rel="stylesheet" media="screen">
+    <link href="/css/owl.theme.css" rel="stylesheet">
+    <link href="/css/owl.carousel.css" rel="stylesheet">
+    <link href="/css/my.css" rel="stylesheet">
+
+    <!-- /.javascript files -->
+
+    <script src="/js/jquery.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <!--<script src="/js/custom.js"></script>-->
+    <script src="/js/jquery.sticky.js"></script>
+    <script src="/js/wow.min.js"></script>
+    <script src="/js/owl.carousel.min.js"></script>
+
+    <script>
+        new WOW().init();
+    </script>
+
+    <!-- Colors -->
+    <link href="/css/css-index.css" rel="stylesheet" media="screen">
+    <!-- <link href="css/css-index-green.css" rel="stylesheet" media="screen"> -->
+    <!-- <link href="css/css-index-purple.css" rel="stylesheet" media="screen"> -->
+    <!-- <link href="css/css-index-red.css" rel="stylesheet" media="screen"> -->
+    <!--<link href="css/css-index-orange.css" rel="stylesheet" media="screen">-->
+    <!-- <link href="css/css-index-yellow.css" rel="stylesheet" media="screen"> -->
+
+    <!-- Google Fonts -->
+    <link rel="stylesheet"
+          href="http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic"/>
+
+</head>
+
+<body data-spy="scroll" data-target="#navbar-scroll">
+
+<!-- /.preloader -->
+<!--<div id="preloader"></div>-->
+<div id="top"></div>
+
+<!-- NAVIGATION -->
+<div id="menu">
+    <nav class="navbar-wrapper navbar-default" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-backyard">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <h2><strong>Melkie</strong></h2>
+            </div>
+
+            <div id="navbar-scroll" class="collapse navbar-collapse navbar-backyard navbar-right">
+                <ul class="nav navbar-nav">
+                    <li><a href="/">Home</a></li>
+                    <!--<li><a href="#googleMap">Map View</a></li>-->
+                    <!--<li><a href="#detailView">Detail View</a></li>-->
+                    <li><a href="/culture_and_tips" style="color:orange">Explore Foreign Culture and Tips</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+
+
+<!-- /.download section -->
+<div>
+    <ul class="nav nav-tabs nav-justified">
+        <li class="active"><a data-toggle="tab" href="#EatOutside">Eat out</a></li>
+        <li><a data-toggle="tab" href="#CookAtHome">Stay in</a></li>
+    </ul>
+</div>
+
+<div class="tab-content">
+    <div id="EatOutside" class="tab-pane fade in active">
+        <!-- /.parallax full screen background image -->
+        <div class="fullscreen landing parallax" style="background-image:url('/images/brooke-lark-230140.jpg');"
+             data-img-width="2000" data-img-height="1333" data-diff="100">
+            <div class="overlay">
+
+                <!-- Add Google Map -->
+                <!--<div id="googleMap" style="height:300px;width:100%;"></div>-->
+                <!--<script>-->
+                <!--function myMap() {-->
+                <!--var myCenter = new google.maps.LatLng(-37.8770, 145.0443);-->
+                <!--var mapProp = {-->
+                <!--center: myCenter,-->
+                <!--zoom: 12,-->
+                <!--scrollwheel: false,-->
+                <!--draggable: true,-->
+                <!--mapTypeId: google.maps.MapTypeId.ROADMAP-->
+                <!--};-->
+                <!--var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);-->
+                <!--var marker = new google.maps.Marker({position: myCenter});-->
+                <!--marker.setMap(map);-->
+                <!--}-->
+                <!--</script>-->
+                <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBkJppdWRHQbcAPUfFN7Zva6tslZk5qyX4&callback=myMap"></script>-->
+
+                <!--<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3152.023602373163!2d144.96491711523606!3d-37.81291614176772!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642c9ed692e49%3A0x932a5fca9033f518!2sTim+Ho+Wan!5e0!3m2!1sen!2sau!4v1505807780136"-->
+                <!--width="100%" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>-->
+
+
+                <iframe th:src="@{'https://www.google.com/maps/embed/v1/place?key=AIzaSyAABKsQey-XPjwR-wtUdWPtf7VqS-MXS7k&q=place_id:' + ${currentRestaurant.restaurant_placeID}}"
+                        width="100%" height="300" frameborder="0" allowfullscreen></iframe>
+
+                <div id="detailView" class="container">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6">
+                            <div class="row">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading list-heading">
+                                        <div style="font-size: xx-large">
+                                            <strong>Monthly User Ranking</strong>
+                                        </div>
+                                        <span></span>
+                                    </div>
+                                    <script>
+                                        function likeButtonClicked() {
+                                            var id = event.target.id;
+                                            switch (id) {
+                                                case "thumbsUpButton1":
+                                                    incrementValue("likeNumber1")
+                                                    break;
+                                                case "thumbsUpButton2":
+                                                    incrementValue("likeNumber2")
+                                                    break;
+                                                case "thumbsUpButton3":
+                                                    incrementValue("likeNumber3")
+                                                    break;
+                                                case "thumbsUpButton4":
+                                                    incrementValue("likeNumber4")
+                                                    break;
+                                                case "thumbsUpButton5":
+                                                    incrementValue("likeNumber5")
+                                                    break;
+                                                default:
+                                                    break;
+                                            }
+
+                                            alert("Thanks for your like!");
+                                        }
+
+                                        function incrementValue(arg) {
+                                            var value = parseInt(document.getElementById(arg).innerText, 10);
+                                            value = isNaN(value) ? 0 : value;
+                                            value++;
+                                            document.getElementById(arg).innerText = value;
+                                        }
+
+                                        $(".table tr").click(function () {
+                                            window.location = "tab.html";
+                                        });
+                                    </script>
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th class="col-xs-6">Name</th>
+                                            <th class="col-xs-3">Category</th>
+                                            <th class="col-xs-3">Likes</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <th:block th:each="restaurant,itrStat : ${restaurantList}">
+                                            <tr class="body-text">
+                                                <td class="col-xs-2"><a
+                                                        th:text="${restaurant.restaurant_name}"
+                                                        th:href="@{'/result/' + ${currentTaste.taste_id} + '/' + ${itrStat.index} }">rest_name</a>
+                                                </td>
+                                                <td class="col-xs-8"><span th:text="${currentTaste.taste_name}">taste_name</span>
+                                                </td>
+                                                <td class="col-xs-2"><span
+                                                        th:text="${restaurant.likes}">rest_likes</span><i
+                                                        onclick="likeButtonClicked(this)"
+                                                        class="fa fa-thumbs-up like-button"
+                                                        id="thumbsUpButton"></i></td>
+                                            </tr>
+                                        </th:block>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-1 col-sm-1">
+                        </div>
+                        <div class="col-md-5 col-sm-5">
+                            <div class="card">
+                                <div class="card-block">
+                                    <!--restaurant name-->
+                                    <div>
+                                        <h2 class="card-title detail-restaurant-name orange"
+                                            th:text="${currentRestaurant.restaurant_name}">Restaurant_Name</h2>
+                                        <!--<span style="text-align: right">40 &nbsp<i onclick="likeButtonClicked(this)" class="fa fa-thumbs-up like-button"></i></span>-->
+                                    </div>
+
+                                    <!--restaurant address-->
+                                    <div>
+                                        <i class="fa fa-location-arrow detail-icons"
+                                           style="font-size: 30px"></i>
+                                        <span class="card-subtitle text-muted detail-address"><a href="#"
+                                                                                                 class="card-link"
+                                                                                                 th:text="${currentRestaurant.restaurant_address}">Restaurant_Address</a></span>
+                                    </div>
+
+                                </div>
+                                <!--<div class="row">-->
+                                <!--<div class="col-md-12 col-sm-12">-->
+                                <!--<div id="Carousel" class="carousel slide">-->
+
+                                <!--<ol class="carousel-indicators" style="padding-top: -20px">-->
+                                <!--<li data-target="#Carousel" data-slide-to="0"-->
+                                <!--class="active"></li>-->
+                                <!--<li data-target="#Carousel" data-slide-to="1"></li>-->
+                                <!--</ol>-->
+
+                                <!--&lt;!&ndash; Carousel items &ndash;&gt;-->
+                                <!--<div class="carousel-inner">-->
+
+                                <!--<div class="item active">-->
+                                <!--<div class="row">-->
+                                <!--<div class="col-md-4"><a href="#" class="thumbnail"><img-->
+                                <!--src="images/Cha_Siu_Bao.jpg" alt="Image"></a>-->
+                                <!--</div>-->
+                                <!--<div class="col-md-4"><a href="#" class="thumbnail"><img-->
+                                <!--src="images/Roast%20goose.jpg" alt="Image"></a>-->
+                                <!--</div>-->
+                                <!--<div class="col-md-4"><a href="#" class="thumbnail"-->
+                                <!--style="width: 115px;"><img-->
+                                <!--src="images/Beef%20Chow%20Fun%20.jpg"-->
+                                <!--alt="Image"></a>-->
+                                <!--</div>-->
+                                <!--</div>&lt;!&ndash;.row&ndash;&gt;-->
+                                <!--</div>&lt;!&ndash;.item&ndash;&gt;-->
+
+                                <!--<div class="item">-->
+                                <!--<div class="row">-->
+                                <!--<div class="col-md-4"><a href="#" class="thumbnail"><img-->
+                                <!--src="images/Cha_Siu_Bao.jpg" alt="Image"></a>-->
+                                <!--</div>-->
+                                <!--<div class="col-md-4"><a href="#" class="thumbnail"><img-->
+                                <!--src="images/Roast%20goose.jpg" alt="Image"></a>-->
+                                <!--</div>-->
+                                <!--<div class="col-md-4"><a href="#" class="thumbnail"-->
+                                <!--style="width: 115px;"><img-->
+                                <!--src="images/Beef%20Chow%20Fun%20.jpg"-->
+                                <!--alt="Image"></a>-->
+                                <!--</div>-->
+                                <!--</div>&lt;!&ndash;.row&ndash;&gt;-->
+                                <!--</div>&lt;!&ndash;.item&ndash;&gt;-->
+
+                                <!--</div>&lt;!&ndash;.carousel-inner&ndash;&gt;-->
+                                <!--&lt;!&ndash;<a data-slide="prev" href="#Carousel" class="left carousel-control"><</a>&ndash;&gt;-->
+                                <!--&lt;!&ndash;<a data-slide="next" href="#Carousel" class="right carousel-control">></a>&ndash;&gt;-->
+                                <!--</div>&lt;!&ndash;.Carousel&ndash;&gt;-->
+                                <!--</div>-->
+                                <!--</div>-->
+                                <div class="card-block">
+                                    <!--<span>-->
+                                    <!--<span style="font-size: xx-large">"</span>-->
+                                    <!--<span class="card-text">A authentic Cantonese Restaurant, famous for it's Dim Sum and Cha Siu Bao</span>-->
+                                    <!--<span style="font-size: xx-large">"</span>-->
+                                    <!--</span>-->
+                                    <!--<p class="card-text">-->
+                                    <!--<p>Open Hour: Monday: 12:00-15:00, 18:00-23:00-->
+                                    <!--<br/>Tuesday: 12:00-15:00, 18:00-23:00-->
+                                    <!--<br/>Wednesday: 12:00-15:00, 18:00-23:00-->
+                                    <!--<br/>Thursday: 12:00-15:00, 18:00-23:00-->
+                                    <!--<br/>Friday: 12:00-15:00, 18:00-23:00-->
+                                    <!--<br/>Saturday: 12:00-15:00, 18:00-23:00-->
+                                    <!--<br/>Sunday: 18:00-22:30</p>-->
+
+                                    <div class="row" style="padding-top: 20px">
+                                        <div class="col-md-6 col-sm-6">
+                                            <div>
+                                                <i class="fa fa-star detail-icons" aria-hidden="true"></i>
+                                                <span class="card-text"> Google Rating: </span>
+                                                <span class="card-text"
+                                                      th:text="${currentRestaurant.restaurant_googleRating}">Restaurant_Rating</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6">
+                                            <div>
+                                                <i class="fa fa-phone-square detail-icons"></i>
+                                                <span class="card-text"> Phone Number: </span>
+                                                <span th:text="${currentRestaurant.phoneNumber}">Restaurant_Phone_Number</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6">
+                                            <div>
+                                                <i class="fa fa-cutlery detail-icons" aria-hidden="true"></i>
+                                                <span class="card-text"> Seats Available: </span>
+                                                <span th:text="${currentRestaurant.restaurant_seats}">Restaurant_Seats</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6">
+
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-12 col-sm-12">
+                                            <div>
+                                                <i class="fa fa-external-link detail-icons"></i>
+                                                <span><a th:href="${currentRestaurant.websiteLink}"
+                                                         class="card-link">Restaurant Website Link</a></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="CookAtHome" class="tab-pane fade">
+        <div id="recipeView">
+            <div class="row">
+                <h1>Mother's Recipe</h1>
+                <div class="row">
+                    <div class="col-sm-6 col-md-6">
+                        <div class="card h-70">
+                            <div class="card-top">
+                                <div id="Carousel" class="carousel slide">
+
+                                    <!-- Carousel items -->
+                                    <div class="carousel-inner">
+
+                                        <div class="item active">
+                                            <div class="row">
+                                                <div class="col-md-4"><a href="#" class="thumbnail"
+                                                                         style="width: 160px"><img
+                                                        src="images/Beef%20Chow%20Fun%20.jpg" alt="Image"
+                                                        style="max-width:100%;"></a></div>
+                                                <div class="col-md-4"><a href="#" class="thumbnail"><img
+                                                        src="images/Roast%20goose.jpg" alt="Image"
+                                                        style="max-width:100%;"></a></div>
+                                                <div class="col-md-4"><a href="#" class="thumbnail"
+                                                                         style="padding-left: -20px"><img
+                                                        src="images/Cha_Siu_Bao.jpg" alt="Image"
+                                                ></a></div>
+                                            </div><!--.row-->
+                                        </div><!--.item-->
+
+                                        <div class="item">
+                                            <div class="row">
+                                                <div class="col-md-4"><a href="#" class="thumbnail"
+                                                                         style="width: 160px"><img
+                                                        src="images/Beef%20Chow%20Fun%20.jpg" alt="Image"
+                                                        style="max-width:100%;"></a></div>
+                                                <div class="col-md-4"><a href="#" class="thumbnail"><img
+                                                        src="images/Roast%20goose.jpg" alt="Image"
+                                                        style="max-width:100%;"></a></div>
+                                                <div class="col-md-4"><a href="#" class="thumbnail"
+                                                                         style="padding-left: -20px"><img
+                                                        src="images/Cha_Siu_Bao.jpg" alt="Image"
+                                                ></a></div>
+                                            </div><!--.row-->
+                                        </div><!--.item-->
+
+                                        <ol class="carousel-indicators">
+                                            <li data-target="#Carousel" data-slide-to="0"
+                                                class="active"></li>
+                                            <li data-target="#Carousel" data-slide-to="1"></li>
+                                        </ol>
+
+                                    </div><!--.carousel-inner-->
+                                    <!--<a data-slide="prev" href="#Carousel" class="left carousel-control"><</a>-->
+                                    <!--<a data-slide="next" href="#Carousel" class="right carousel-control">></a>-->
+                                </div><!--.Carousel-->
+                            </div>
+                            <div class="card-body">
+                                <h1 class="card-text" th:text="${currentRecipe.recipe_name}">recipe_name</h1>
+                                <p>
+                                    1 pound beef/
+                                    1 pound wide rice noodle/
+                                    1 small bunch of <a href="#googleMap">Chinese chive</a> or <a
+                                        href="#googleMap">scallion</a>;
+                                    cut into sections around 10cm long/
+                                    1 small bunch of <a href="#googleMap">bean sprouts</a>/
+                                    1/4 middle size white onion, shredded
+                                <h4>Marinade sauce</h4>
+                                1 teaspoon light soy sauce/
+                                1/2 teaspoon salt/
+                                1 tablespoon <a href="#googleMap">oyster sauce</a>/
+                                1 teaspoon sesame oil/
+                                1 tablespoon starch/
+                                1/2 tablespoon <a href="#googleMap">light soy sauce</a>/
+                                1 teaspoon <a href="#googleMap">dark soy sauce</a>/
+                                1 tablespoon vegetable oil/
+                                1/2 teaspoon sugar</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-6">
+                        <p>1. Cut beef into thin slices, put into a bowl. And then add all of ingredients
+                            for marinade
+                            sauce to
+                            marinade for at least 15 minutes.<br/>
+                            2. Heat up cooking oil in wok. Add beef slices in to cook around half minute or
+                            just until
+                            the color of
+                            beef slices changes. Transfer the beef slices out and also pour the oil out.
+                            Clean your pan
+                            or wok.<br/>
+                            3. Heat up around 1 and 1/2 tablespoons cooking oil, add rice noodle and onion
+                            shreds and
+                            straight after
+                            that stir in the stir fry sauce. Keep tossing your pan or wok until the noodles
+                            are well
+                            coated with the
+                            sauce.<br/>
+                            4. Return beef slices and bean sprouts to fry for another half minutes. Keep
+                            tossing your
+                            pan.<br/>
+                            5. Add Chinese chives or scallion to fry for another 30 seconds.<br/>
+                            6. Serve hot!
+                        </p>
+                        <div class="alert alert-info">
+                            <h6>Tips From Melkie</h6>Out of stock? You can click the ingredient hyperlink to
+                            find the
+                            grocery store
+                        </div>
+                    </div>
+                </div>
+
+                <h2 style="padding-top: 20px">Grocery Store Map</h2>
+                <!-- Add Google Map -->
+                <!--<div id="googleMap" style="height:300px;width:100%;"></div>-->
+                <!--<script>-->
+                <!--function myMap() {-->
+                <!--var myCenter = new google.maps.LatLng(-37.8770, 145.0443);-->
+                <!--var mapProp = {-->
+                <!--center: myCenter,-->
+                <!--zoom: 12,-->
+                <!--scrollwheel: false,-->
+                <!--draggable: true,-->
+                <!--mapTypeId: google.maps.MapTypeId.ROADMAP-->
+                <!--};-->
+                <!--var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);-->
+                <!--var marker = new google.maps.Marker({position: myCenter});-->
+                <!--marker.setMap(map);-->
+                <!--}-->
+                <!--</script>-->
+                <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBkJppdWRHQbcAPUfFN7Zva6tslZk5qyX4&callback=myMap"></script>-->
+                <iframe id="googleMap"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3152.135568621238!2d144.96099541535602!3d-37.81029344161797!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642cae2a646d1%3A0xd390b204eb6d7833!2sCentral+Grocery!5e0!3m2!1sen!2shk!4v1505806790661"
+                        width="100%" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- /.footer -->
+<footer id="footer">
+    <div class="container">
+        <div class="col-sm-4 col-sm-offset-4">
+            <!-- /.social links -->
+            <div class="social text-center">
+                <ul>
+                    <li><a class="wow fadeInUp" href="https://twitter.com/"><i class="fa fa-twitter"></i></a>
+                    </li>
+                    <li><a class="wow fadeInUp" href="https://www.facebook.com/" data-wow-delay="0.2s"><i
+                            class="fa fa-facebook"></i></a></li>
+                    <li><a class="wow fadeInUp" href="https://plus.google.com/" data-wow-delay="0.4s"><i
+                            class="fa fa-google-plus"></i></a></li>
+                    <li><a class="wow fadeInUp" href="https://instagram.com/" data-wow-delay="0.6s"><i
+                            class="fa fa-instagram"></i></a></li>
+                </ul>
+            </div>
+            <div class="text-center wow fadeInUp" style="font-size: 14px;">Copyright Team Supreme 2017</div>
+            <a href="#" class="scrollToTop"><i class="pe-7s-up-arrow pe-va"></i></a>
+        </div>
+    </div>
+</footer>
+</body>
+</html>
