@@ -53,10 +53,14 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <h2>
-                    <span th:text="${currentCountry.country_name} + '/'">country_name</span>
-                    <span th:text="${currentTaste.taste_name}">taste_name</span>
-                </h2>
+                <span>
+                    <div style="font-size: x-large">
+                        <span th:text="${currentCountry.country_name} + '/'">country_name</span>
+                        <span th:text="${currentTaste.taste_name}">taste_name</span>
+                    </div>
+                    <span style="font-size: xx-small" th:text="${currentCountry.international_student_number} + ' international students from ' + ${currentCountry.country_name} + ' in Australia!'"></span>
+                </span>
+
             </div>
 
             <div id="navbar-scroll" class="collapse navbar-collapse navbar-backyard navbar-right">
