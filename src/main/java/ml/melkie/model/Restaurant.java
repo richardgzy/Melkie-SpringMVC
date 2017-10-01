@@ -11,9 +11,10 @@ public class Restaurant {
     private String phoneNumber;
     private String restaurant_placeID;
 
-    public Restaurant(Integer restaurant_id, String restaurant_name, Integer likes, String restaurant_placeID) {
+    public Restaurant(Integer restaurant_id, String restaurant_name, Integer restaurant_seats, Integer likes, String restaurant_placeID) {
         this.restaurant_id = restaurant_id;
         this.restaurant_name = restaurant_name;
+        this.restaurant_seats = restaurant_seats;
         this.likes = likes;
         this.restaurant_placeID = restaurant_placeID;
     }
@@ -55,7 +56,11 @@ public class Restaurant {
     }
 
     public int getRestaurant_seats() {
-        return restaurant_seats;
+        if(restaurant_seats == null){
+            return -1;
+        }else{
+            return restaurant_seats;
+        }
     }
 
     public void setRestaurant_seats(int restaurant_seats) {

@@ -91,7 +91,8 @@ public class APIManager {
 //    }
 
     public static String getRecipeData(String recipeName) {
-        String query = yummlyrequestUrl + yummlyApplicationID + yummlyApplicationKey + "&q=" + recipeName + yummlyMaxResult + yummlyRequeirePictures + yummlyRequireSourceSiteUrl;
+
+        String query = yummlyrequestUrl + yummlyApplicationID + yummlyApplicationKey + "&q=" + recipeName.replaceAll(" ", "%20") + yummlyMaxResult + yummlyRequeirePictures + yummlyRequireSourceSiteUrl;
 
 //        String da = HttpRequest.get(query).body();
 

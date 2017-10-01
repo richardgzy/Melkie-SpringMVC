@@ -39,7 +39,7 @@
 }
 
 .detail-icons {
-    font-size: larger;
+    font-size: 30px;
 }
 
 .detail-address {
@@ -94,4 +94,12 @@ body {
 .article-image {
     width: 250px;
     height: 250px;
+}
+
+.recipe-header{
+    font-size: xx-large;
+}
+
+.attribute-text{
+    font-size: x-large;
 }

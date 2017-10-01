@@ -30,7 +30,6 @@ public class MelkieApplication {
 	static private Taste currentTaste;
 	static private Restaurant currentRestaurant;
 	static private Recipe currentRecipe;
-	static private Grocery currentGrocery;
 
 	@Autowired
 	private CountryDao countryDao;
@@ -40,8 +39,8 @@ public class MelkieApplication {
 	private RestaurantDao restaurantDao;
 	@Autowired
 	private RecipeDao recipeDao;
-//	@Autowired
-//	private GroceryDao groceryDao;
+	@Autowired
+	private GroceryDao groceryDao;
 
 	public static void main(String[] args) {
 		SpringApplication.run(MelkieApplication.class, args);
@@ -51,37 +50,23 @@ public class MelkieApplication {
 	String index(Model model) {
 		countryList = countryDao.getAllCountry();
 
-		generateData();
 		model.addAttribute("countryList", countryList);
-//		model.addAttribute("currentCountry", currentCountry);
-//		model.addAttribute("SubmitForm", new SubmitForm());
-		model.addAttribute("restaurantList", restaurantList);
-		model.addAttribute("currentRestaurant", currentRestaurant);
 		return "index";
 	}
 
-	@PostMapping("/post")
-	public String submitCountry(HttpServletRequest request){
-		System.out.println(request.getParameter("theCountry"));
-		return "result";
+	@PostMapping("/taste")
+	String index2(Model model, @RequestParam("country_id") String country_id){
+		tasteList = tasteDao.getTasteListByCountryId(Integer.parseInt(country_id));
+
+		model.addAttribute("tasteList", tasteList);
+		return "index2";
 	}
 
+
 	@PostMapping("/result")
-	public String result(HttpServletRequest request, Model model){
-		System.out.println(request.getParameter("theCountry"));
+	public String result(@RequestParam("taste_id") String taste_id){
 
-//
-//		currentCountry = new Country(1,"China",6666);
-//		currentTaste = new Taste(1, "Cantonese food", 1);
-//
-//		restaurantDao.getRestaurantsByTaste(currentTaste.getTaste_name());
-
-
-		SubmitForm submitForm = new SubmitForm();
-
-		model.addAttribute("submitForm", submitForm);
-//		model.addAttribute("currenttaste", currentTaste);
-		return "result";
+		return "redirect:/result/"+ taste_id + "/0/0";
 	}
 
 	@GetMapping("/result/{taste_id}/{restaurant_index_in_taste}/{recipe_index_in_taste}")
@@ -91,11 +76,11 @@ public class MelkieApplication {
 		currentCountry = countryDao.getCountryById(currentTaste.getCountry_id());
 
 		//get restaurant list by taste name
-		restaurantList = restaurantDao.getRestaurantsByTaste(currentTaste.getTaste_name());
+		restaurantList = restaurantDao.getRestaurantsByTaste(currentTaste.getTaste_id());
 		//get recipe list by taste name
-		recipeList = recipeDao.getRecipeListByTaste(currentTaste.getTaste_name());
+		recipeList = recipeDao.getRecipeListByTaste(currentTaste.getTaste_id());
 		//get grocery list by country name
-//		groceryList - groceryDao.getGroceryByCountry(currentCountry.getCountry_name())''
+		groceryList = groceryDao.getGroceryByCountry(currentCountry.getCountry_name());
 
 		//get current restaurant information from google API
 		currentRestaurant = restaurantList.get(Integer.parseInt(restaurant_index_in_taste));
@@ -104,34 +89,41 @@ public class MelkieApplication {
 		currentRestaurant = JsonParser.parseRestaurantinfo(restaurantData, currentRestaurant);
 
 		//get restaurant seats from open data
-		currentRestaurant.setRestaurant_seats(66);
+//		currentRestaurant.setRestaurant_seats(66);
 
 		//get current recipe information from yummly API
 		currentRecipe = recipeList.get(Integer.parseInt(recipe_index_in_taste));
-//		String name = currentRecipe.getRecipe_name().replace('_', ' ');
-//		String recipeData = APIManager.getRecipeData(name);
-//		currentRecipe = JsonParser.parseRecipeInfo(recipeData, currentRecipe);
+		String name = currentRecipe.getRecipe_name().replace('_', ' ');
+		String recipeData = APIManager.getRecipeData(name);
+		currentRecipe = JsonParser.parseRecipeInfo(recipeData, currentRecipe);
 
+		//get grocery latitude and longitude from google place API
+		String[][] markers = new String[groceryList.size()][];
+
+		for(int i = 0; i < groceryList.size(); i++){
+			Grocery g = groceryList.get(i);
+			String[] aMarker = new String[3];
+			String groceryData = APIManager.getRestaurantData(g.getGrocery_place_id());
+			g = JsonParser.parseGroceryInfo(groceryData, g);
+			aMarker[0] = g.getGrocery_name();
+			aMarker[1] = g.getLatitude().toString();
+			aMarker[2] = g.getLongitude().toString();
+			markers[i] = aMarker;
+		}
+
+
+		//add attribute to model
 		model.addAttribute("restaurantList", restaurantList);
+		model.addAttribute("recipeList", recipeList);
+		model.addAttribute("groceryList", groceryList);
 		model.addAttribute("currentCountry", currentCountry);
 		model.addAttribute("currentTaste", currentTaste);
 		model.addAttribute("currentRestaurant", currentRestaurant);
 		model.addAttribute("currentRecipe", currentRecipe);
+		model.addAttribute("markers", markers);
 
 		return "result";
 	}
-
-
-//	@PostMapping(value = "/")
-//	String create(Model model) {
-//
-//		model.addAttribute("countryList", countryList);
-////		model.addAttribute("currentCountry", currentCountry);
-//		model.addAttribute("SubmitForm",new SubmitForm());
-//		model.addAttribute("restaurantList", restaurantList);
-//		model.addAttribute("currentRestaurant", currentRestaurant);
-//		return "index";
-//	}
 
 	@RequestMapping("/index2/result/{taste_id}")
 	String recipePage(Model model, @PathVariable String taste_id) {
@@ -154,21 +146,16 @@ public class MelkieApplication {
 		return "portfolio-item" + article_id;
 	}
 
-    @RequestMapping("/articles")
-    String findArticles() {
-        return "portfolio-item" + "1";
-    }
-
-	private void generateData(){
-		Taste newTaste = new Taste(1, "Cantonese Food", 1);
-		tasteList.add(newTaste);
-
-//		restaurantList = restaurantDao.getRestaurantsByTaste(newTaste.getTaste_name());
-
-		//append information from google to the currentRestaurant
-		currentRestaurant = new Restaurant(1,"TimhoWannn", 22, "ChIJSS5p7clC1moRGPUzkMpfKpM");
-		String placeId = currentRestaurant.getRestaurant_placeID();
-		String data = APIManager.getRestaurantData(placeId);
-		currentRestaurant = JsonParser.parseRestaurantinfo(data, currentRestaurant);
-	}
+//	private void generateData(){
+//		Taste newTaste = new Taste(1, "Cantonese Food", 1);
+//		tasteList.add(newTaste);
+//
+////		restaurantList = restaurantDao.getRestaurantsByTaste(newTaste.getTaste_name());
+//
+//		//append information from google to the currentRestaurant
+//		currentRestaurant = new Restaurant(1,"TimhoWannn", 22, "ChIJSS5p7clC1moRGPUzkMpfKpM");
+//		String placeId = currentRestaurant.getRestaurant_placeID();
+//		String data = APIManager.getRestaurantData(placeId);
+//		currentRestaurant = JsonParser.parseRestaurantinfo(data, currentRestaurant);
+//	}
 }

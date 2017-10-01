@@ -24,33 +24,35 @@ import java.net.URISyntaxException;
 @ComponentScan(basePackages = "ml.melkie.model")
 public class WebContextConfig {
 
-//    @Bean
-//    public BasicDataSource getDataSource() throws URISyntaxException {
-//
-//        URI dbUri = new URI(System.getenv("CLEARDB_DATABASE_URL"));
-//
-//        String username = dbUri.getUserInfo().split(":")[0];
-//        String password = dbUri.getUserInfo().split(":")[1];
-//        String dbUrl = "jdbc:mysql://" + dbUri.getHost() + dbUri.getPath();
-//
-//        BasicDataSource basicDataSource = new BasicDataSource();
-//        basicDataSource.setUrl(dbUrl);
-//        basicDataSource.setUsername(username);
-//        basicDataSource.setPassword(password);
-//
-//        return basicDataSource;
-//    }
-
+//    heroku clear db datasource. used in deployment
     @Bean
-    public DataSource getDataSource() {
-        BasicDataSource dataSource = new BasicDataSource();
-//        数据库连接配置
-        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/Melkie");
-        dataSource.setUsername("root");
-        dataSource.setPassword("richard0625");
-        return dataSource;
+    public BasicDataSource getDataSource() throws URISyntaxException {
+
+        URI dbUri = new URI(System.getenv("CLEARDB_DATABASE_URL"));
+
+        String username = dbUri.getUserInfo().split(":")[0];
+        String password = dbUri.getUserInfo().split(":")[1];
+        String dbUrl = "jdbc:mysql://" + dbUri.getHost() + dbUri.getPath();
+
+        BasicDataSource basicDataSource = new BasicDataSource();
+        basicDataSource.setUrl(dbUrl);
+        basicDataSource.setUsername(username);
+        basicDataSource.setPassword(password);
+
+        return basicDataSource;
     }
+
+//    localhost mysql datasoure, used in localhost testing
+//    @Bean
+//    public DataSource getDataSource() {
+//        BasicDataSource dataSource = new BasicDataSource();
+////        database connection settings
+//        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+//        dataSource.setUrl("jdbc:mysql://localhost:3306/Melkie");
+//        dataSource.setUsername("root");
+//        dataSource.setPassword("richard0625");
+//        return dataSource;
+//    }
 
     //transaction management
     @Bean

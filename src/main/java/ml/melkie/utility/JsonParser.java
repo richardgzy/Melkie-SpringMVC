@@ -1,5 +1,6 @@
 package ml.melkie.utility;
 
+import ml.melkie.model.Grocery;
 import ml.melkie.model.Recipe;
 import ml.melkie.model.Restaurant;
 import org.json.JSONArray;
@@ -46,20 +47,21 @@ public class JsonParser {
     public static Recipe parseRecipeInfo(String input, Recipe incompleteRecipe){
         try {
             JSONObject jo = new JSONObject(input);
-            JSONObject matchesResult = jo.getJSONObject("matches");
+            JSONArray matchesResult = jo.getJSONArray("matches");
+            JSONObject singleMatch = matchesResult.optJSONObject(0);
 
-            JSONObject imageUrlJO = matchesResult.getJSONObject("imageUrlsBySize");
+            JSONObject imageUrlJO = singleMatch.getJSONObject("imageUrlsBySize");
             String imageUrl = imageUrlJO.getString("90");
 
-            JSONArray ingredientsJO = imageUrlJO.getJSONArray("ingredients");
+            JSONArray ingredientsJO = singleMatch.getJSONArray("ingredients");
             ArrayList<String> ingredients = new ArrayList<>();
 
             for(int i = 0; i < ingredientsJO.length(); i++){
                 ingredients.add(ingredientsJO.getString(i));
             }
 
-            double rating = matchesResult.getDouble("rating");
-            String total_time_in_seconds = matchesResult.getString("totalTimeInSeconds");
+            double rating = singleMatch.getDouble("rating");
+            String total_time_in_seconds = singleMatch.getString("totalTimeInSeconds");
 
             incompleteRecipe.setImage_url(imageUrl);
             incompleteRecipe.setIngredients(ingredients);
@@ -71,5 +73,29 @@ public class JsonParser {
             e.printStackTrace();
         }
         return incompleteRecipe;
+    }
+
+    public static Grocery parseGroceryInfo(String input, Grocery incompleteGrocery){
+        try {
+            JSONObject jo = new JSONObject(input);
+            String status = jo.getString("status");
+
+            if (status.equals("OK")) {
+                JSONObject result = jo.getJSONObject("result");
+                JSONObject geometry = result.getJSONObject("geometry");
+                JSONObject location = geometry.getJSONObject("location");
+                Double latitude = location.getDouble("lat");
+                Double longitude = location.getDouble("lng");
+
+                incompleteGrocery.setLatitude(latitude);
+                incompleteGrocery.setLongitude(longitude);
+            }else{
+                //return error from google
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return incompleteGrocery;
     }
 }

@@ -16,7 +16,7 @@ public class Recipe {
 
     public Recipe(Integer recipe_id, String recipe_name, String direction_link) {
         this.recipe_id = recipe_id;
-        this.recipe_name = recipe_name;
+        this.recipe_name = recipe_name.replace('_', ' ');;
         this.direction_link = direction_link;
     }
 

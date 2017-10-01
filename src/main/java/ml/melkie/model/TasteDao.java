@@ -15,6 +15,9 @@ public interface TasteDao {
     @Select("select * from taste where taste_name = #{tasteName}")
     Taste getTasteByName(String tasteName);
 
-    @Select("select * from taste natural join country where country_name = #{countryName}")
-    ArrayList<Taste> getTasteListByCountryName(String countryName);
+    @Select("select * from taste")
+    ArrayList<Taste> getAllTaste();
+
+    @Select("select taste_id, taste_name, country_id from taste natural join country where country_id = #{countryId}")
+    ArrayList<Taste> getTasteListByCountryId(Integer countryId);
 }

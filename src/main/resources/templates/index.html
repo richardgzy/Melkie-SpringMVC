@@ -94,79 +94,49 @@
                 <div class="col-md-5">
 
                     <div class="signup-header wow fadeInUp">
-                        <h3 class="form-title text-left">Let us know about your taste</h3>
-                        <form class="form-header" role="form" method="post" id="#" action="/result">
-                            <input type="hidden" name="country">
-                            <input type="hidden" name="taste">
+                        <h3 class="form-title text-left">Let us know more about you</h3>
+                        <form class="form-header" role="form" method="post" id="#" th:action="@{/taste}">
                             <div class="form-group">
                                 <div class="row">
-                                    <div class="col-sm-9">
-                                        <div class="label" style="font-size: x-large">Step 1. Select Your Country:</div>
+                                    <div class="label" style="font-size: x-large">Step 1. Select Your Country:</div>
+                                </div>
+                                <div class="row" style="padding-top: 15px; padding-bottom: 15px; text-align: center;">
+                                    <div th:if="${countryList != null and not #lists.isEmpty(countryList)}">
+                                        <select id="country_id" name="country_id" style="height: 100%; width: 95%;">
+                                            <option th:each="country,itrStat: ${countryList}"
+                                                    th:value="${country.country_id}"
+                                                    th:text="${country.country_name}">
+                                            </option>
+                                        </select>
                                     </div>
-                                    <div class="col-sm-3" style="align-content: flex-start">
-                                        <!--<div class="dropdown" style="padding-top: 7px">-->
-                                        <!--<a aria-expanded="false" aria-haspopup="true" role="button"-->
-                                        <!--data-toggle="dropdown" class="dropdown-toggle" href="#"-->
-                                        <!--style="color: #FFFFFF; font-size: x-large;align-content: center">-->
-                                        <!--<span id="selected1">China</span><span-->
-                                        <!--class="caret"></span></a>-->
-                                        <!--<ul class="dropdown-menu">-->
-                                        <!--<li><a href="#">China</a></li>-->
-                                        <!--&lt;!&ndash;<li><a href="#">Pakistan</a></li>&ndash;&gt;-->
-                                        <!--</ul>-->
-                                        <!--</div>-->
-
-                                        <!--<div th:if="${countryList != null and not #lists.isEmpty(countryList)}">-->
-                                            <!--<select id="theCountry" name="theCountry" th:field="*{submitCountry}" th:remove="all-but-first">-->
-                                                <!--<option th:each="country : ${countryList}"-->
-                                                        <!--th:value="${country}"-->
-                                                        <!--th:text="${country.country_name}">Country-->
-                                                <!--</option>-->
-                                            <!--</select>-->
-                                        <!--</div>-->
-                                        <div th:if="${countryList != null and not #lists.isEmpty(countryList)}">
-                                            <select id="theCountry" name="theCountry">
-                                                <option th:each="country : ${countryList}"
-                                                        th:value="${country.country_name}"
-                                                        th:text="${country.country_name}">Country
-                                                </option>
-                                            </select>
-                                        </div>
-                                        <div th:if="${countryList == null and #lists.isEmpty(countryList)}">
-                                            <div>"No countries were found."</div>
-                                        </div>
+                                    <div th:if="${countryList == null and #lists.isEmpty(countryList)}">
+                                        <div>"No countries were found."</div>
                                     </div>
                                 </div>
                                 <!--<div class="form-group">-->
-                                    <!--<div class="row">-->
-                                        <!--<div class="col-sm-4">-->
-                                            <!--<h2>Step 2:</h2>-->
-                                        <!--</div>-->
-                                        <!--<div class="col-sm-8">-->
-                                            <!--<div class="dropdown" style="padding-top: 7px">-->
-                                                <!--<a aria-expanded="false" aria-haspopup="true" role="button"-->
-                                                   <!--data-toggle="dropdown" class="dropdown-toggle" href="#"-->
-                                                   <!--style="color: #FFFFFF; font-size: x-large">-->
-                                                    <!--<span id="selected2">Cantonese Food</span><span-->
-                                                        <!--class="caret"></span></a>-->
-                                                <!--<ul class="dropdown-menu">-->
-                                                    <!--<li><a href="#">Cantonese Food</a></li>-->
-                                                    <!--&lt;!&ndash;<li><a href="#">Sichuan Food</a></li>&ndash;&gt;-->
-                                                <!--</ul>-->
-                                            <!--</div>-->
-                                        <!--</div>-->
-                                    <!--</div>-->
+                                <!--<div class="row">-->
+                                <!--<div class="col-sm-9">-->
+                                <!--<div class="label" style="font-size: x-large">Step 2. Select Your Taste:</div>-->
                                 <!--</div>-->
+                                <!--<div class="col-sm-3" style="align-content: flex-start">-->
+                                <!--<div th:if="${tasteList != null and not #lists.isEmpty(tasteList)}">-->
+                                <!--<select id="taste_id" name="taste_id">-->
+                                <!--<option th:each="taste: ${tasteList}"-->
+                                <!--th:value="${taste.taste_id}"-->
+                                <!--th:text="${taste.taste_name}">-->
+                                <!--</option>-->
+                                <!--</select>-->
+                                <!--</div>-->
+                                <!--<div th:if="${tasteList == null and #lists.isEmpty(tasteList)}">-->
+                                <!--<div>"No tastes were found."</div>-->
+                                <!--</div>-->
+                                <!--</div>-->
+                                <!--</div>-->
+                                <!--</div>-->
+                                <div class="form-group last" style="padding-bottom: 20px">
+                                    <button type="submit" class="btn btn-warning btn-block btn-lg">Next</button>
+                                </div>
                             </div>
-                            <div class="form-group last">
-                                <button type="submit" class="btn btn-warning btn-block btn-lg"
-                                        value="Step 3. Explore!">Explore!</button>
-                                <!--<a href="#EatOutside" class="btn">-->
-                                <!--<div style="padding-top: 11px; font-size: x-large">Step 3. Explore!</div>-->
-                                <!--</a>-->
-                            </div>
-
-                            <p class="privacy text-center">Enter your region and find food like home in Melbourne</p>
                         </form>
                     </div>
                 </div>
