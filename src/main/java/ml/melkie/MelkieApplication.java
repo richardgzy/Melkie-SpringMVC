@@ -78,24 +78,27 @@ public class MelkieApplication {
 		//get restaurant list by taste name
 		restaurantList = restaurantDao.getRestaurantsByTaste(currentTaste.getTaste_id());
 		//get recipe list by taste name
-		recipeList = recipeDao.getRecipeListByTaste(currentTaste.getTaste_id());
+		recipeList = recipeDao.getRecipeListByTaste(Integer.parseInt(taste_id));
 		//get grocery list by country name
 		groceryList = groceryDao.getGroceryByCountry(currentCountry.getCountry_name());
 
 		//get current restaurant information from google API
-		currentRestaurant = restaurantList.get(Integer.parseInt(restaurant_index_in_taste));
-		String placeId = currentRestaurant.getRestaurant_placeID();
-		String restaurantData = APIManager.getRestaurantData(placeId);
-		currentRestaurant = JsonParser.parseRestaurantinfo(restaurantData, currentRestaurant);
 
-		//get restaurant seats from open data
-//		currentRestaurant.setRestaurant_seats(66);
+		for(Restaurant restaurant: restaurantList){
+			String placeId = restaurant.getRestaurant_placeID();
+			String restaurantData = APIManager.getRestaurantData(placeId);
+			restaurant = JsonParser.parseRestaurantinfo(restaurantData, restaurant);
+		}
+		currentRestaurant = restaurantList.get(Integer.parseInt(restaurant_index_in_taste));
 
 		//get current recipe information from yummly API
+		for(Recipe recipe: recipeList){
+			String name = recipe.getRecipe_name().replace('_', ' ');
+			String recipeData = APIManager.getRecipeData(name);
+			recipe = JsonParser.parseRecipeInfo(recipeData, recipe);
+		}
+
 		currentRecipe = recipeList.get(Integer.parseInt(recipe_index_in_taste));
-		String name = currentRecipe.getRecipe_name().replace('_', ' ');
-		String recipeData = APIManager.getRecipeData(name);
-		currentRecipe = JsonParser.parseRecipeInfo(recipeData, currentRecipe);
 
 		//get grocery latitude and longitude from google place API
 		String[][] markers = new String[groceryList.size()][];
@@ -111,7 +114,6 @@ public class MelkieApplication {
 			markers[i] = aMarker;
 		}
 
-
 		//add attribute to model
 		model.addAttribute("restaurantList", restaurantList);
 		model.addAttribute("recipeList", recipeList);
@@ -121,6 +123,7 @@ public class MelkieApplication {
 		model.addAttribute("currentRestaurant", currentRestaurant);
 		model.addAttribute("currentRecipe", currentRecipe);
 		model.addAttribute("markers", markers);
+		model.addAttribute("recipe_index_in_taste", recipe_index_in_taste);
 
 		return "result";
 	}

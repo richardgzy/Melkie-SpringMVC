@@ -27,7 +27,12 @@ public class JsonParser {
                 }else{
                     phone_number = "Not available";
                 }
-                String website_link = result.getString("website");
+                String website_link = "";
+                if(result.has("website")){
+                    website_link = result.getString("website");
+                }else{
+                    website_link = "Not available";
+                }
 
                 incompleteRestaurant.setRestaurant_address(formatted_address);
                 incompleteRestaurant.setPhoneNumber(phone_number);

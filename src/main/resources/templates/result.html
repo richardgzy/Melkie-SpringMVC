@@ -17,7 +17,6 @@
     <link href="/css/my.css" rel="stylesheet">
 
     <!-- /.javascript files -->
-
     <script src="/js/jquery.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <!--<script src="/js/custom.js"></script>-->
@@ -37,7 +36,7 @@
           href="http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic"/>
 </head>
 
-<body data-spy="scroll" data-target="#navbar-scroll">
+<body data-spy="scroll" data-target="#navbar-scroll" onload="go();">
 
 <!-- /.preloader -->
 <!--<div id="preloader"></div>-->
@@ -76,8 +75,8 @@
         <!-- /.main section -->
         <div>
             <ul class="nav nav-tabs nav-justified">
-                <li class="active"><a data-toggle="tab" href="#EatOutside">Eat out</a></li>
-                <li><a data-toggle="tab" href="#CookAtHome">Stay in</a></li>
+                <li class="active"><a data-toggle="tab" href="#EatOutside">Eat Out</a></li>
+                <li><a data-toggle="tab" href="#CookAtHome">Cook At Home</a></li>
             </ul>
         </div>
 
@@ -87,42 +86,10 @@
                 <div class="fullscreen landing parallax" style="background-image:url('/images/brooke-lark-230140.jpg');"
                      data-img-width="2000" data-img-height="1333" data-diff="100">
                     <div class="overlay">
-
-                        <!-- Add Google Map -->
-                        <!--<div id="googleMap" style="height:300px;width:100%;"></div>-->
-                        <!--<script>-->
-                        <!--function myMap() {-->
-                        <!--var myCenter = new google.maps.LatLng(-37.8770, 145.0443);-->
-                        <!--var mapProp = {-->
-                        <!--center: myCenter,-->
-                        <!--zoom: 12,-->
-                        <!--scrollwheel: false,-->
-                        <!--draggable: true,-->
-                        <!--mapTypeId: google.maps.MapTypeId.ROADMAP-->
-                        <!--};-->
-                        <!--var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);-->
-                        <!--var marker = new google.maps.Marker({position: myCenter});-->
-                        <!--marker.setMap(map);-->
-                        <!--}-->
-                        <!--</script>-->
-                        <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBkJppdWRHQbcAPUfFN7Zva6tslZk5qyX4&callback=myMap"></script>-->
-
                         <iframe th:src="@{'https://www.google.com/maps/embed/v1/place?key=AIzaSyAABKsQey-XPjwR-wtUdWPtf7VqS-MXS7k&q=place_id:' + ${currentRestaurant.restaurant_placeID}}"
                                 width="100%" height="300" frameborder="0" allowfullscreen></iframe>
 
-                        <script th:inline="javascript">
-                            function likeButtonClicked() {
-                                var id = event.target.id;
 
-                                alert("Thanks for your like!");
-
-                                var value = parseInt(document.getElementById(id).getAttribute("text"), 10);
-                                value = isNaN(value) ? 0 : value;
-                                value++;
-                                document.getElementById(id).setAttribute("text", value.toString());
-                                alert("Thanks for your like!" + parseInt(document.getElementById(id).getAttribute("text"));
-                            }
-                        </script>
 
                         <div id="detailView" class="container">
                             <div class="row">
@@ -131,7 +98,7 @@
                                         <div class="panel panel-default">
                                             <div class="panel-heading list-heading">
                                                 <div style="font-size: xx-large">
-                                                    <strong>Monthly User Ranking</strong>
+                                                    <strong>Top 5 Authentic Restaurants</strong>
                                                 </div>
                                                 <span></span>
                                             </div>
@@ -141,7 +108,7 @@
                                                 <tr>
                                                     <th class="col-xs-6">Name</th>
                                                     <th class="col-xs-3">Category</th>
-                                                    <th class="col-xs-3">Likes</th>
+                                                    <th class="col-xs-3">Google Rating</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
@@ -153,11 +120,24 @@
                                                         </td>
                                                         <td class="col-xs-8"><span th:text="${currentTaste.taste_name}">taste_name</span>
                                                         </td>
-                                                        <td class="col-xs-2"><span
-                                                                th:text="${restaurant.likes}">rest_likes</span><i
-                                                                onclick="likeButtonClicked(this)"
-                                                                class="fa fa-thumbs-up like-button"
-                                                                th:id="'thumbsUpButton' + ${itrStat.index}"></i>
+                                                        <td class="col-xs-2"><span th:text="${restaurant.restaurant_googleRating}">rest_likes</span>
+                                                            <!--<i onclick="likeButtonClicked(this)" class="fa fa-thumbs-up like-button" th:id="${itrStat.index}"></i>-->
+                                                            <!--<script th:inline="javascript">-->
+                                                                <!--function likeButtonClicked() {-->
+                                                                    <!--var id = event.target.id;-->
+                                                                    <!--var eee = [[${likesList}]];-->
+<!--//                                                                    alert("Thanks for your like!" + eee[id]);-->
+                                                                    <!--var number = eee[id];-->
+                                                                    <!--number++;-->
+<!--//                                                                    var value = parseInt(document.getElementById(id).getAttribute("th:text"), 10);-->
+<!--//                                                                    value = isNaN(value) ? 0 : value;-->
+<!--//                                                                    value++;-->
+                                                                    <!--document.getElementById(id).setAttribute("text", number.toString());-->
+<!--//                                disable button-->
+                                                                    <!--document.getElementById(id).disabled = true;-->
+<!--//                                alert("Thanks for your like!" + parseInt(document.getElementById(id).getAttribute("text"));-->
+                                                                <!--}-->
+                                                            <!--</script>-->
                                                         </td>
                                                     </tr>
                                                 </th:block>
@@ -176,64 +156,13 @@
                                                     th:text="${currentRestaurant.restaurant_name}">Restaurant_Name</h2>
                                             </div>
                                         </div>
-                                        <!--<div class="row">-->
-                                        <!--<div class="col-md-12 col-sm-12">-->
-                                        <!--<div id="Carousel" class="carousel slide">-->
-
-                                        <!--<ol class="carousel-indicators" style="padding-top: -20px">-->
-                                        <!--<li data-target="#Carousel" data-slide-to="0"-->
-                                        <!--class="active"></li>-->
-                                        <!--<li data-target="#Carousel" data-slide-to="1"></li>-->
-                                        <!--</ol>-->
-
-                                        <!--&lt;!&ndash; Carousel items &ndash;&gt;-->
-                                        <!--<div class="carousel-inner">-->
-
-                                        <!--<div class="item active">-->
-                                        <!--<div class="row">-->
-                                        <!--<div class="col-md-4"><a href="#" class="thumbnail"><img-->
-                                        <!--src="images/Cha_Siu_Bao.jpg" alt="Image"></a>-->
-                                        <!--</div>-->
-                                        <!--<div class="col-md-4"><a href="#" class="thumbnail"><img-->
-                                        <!--src="images/Roast%20goose.jpg" alt="Image"></a>-->
-                                        <!--</div>-->
-                                        <!--<div class="col-md-4"><a href="#" class="thumbnail"-->
-                                        <!--style="width: 115px;"><img-->
-                                        <!--src="images/Beef%20Chow%20Fun%20.jpg"-->
-                                        <!--alt="Image"></a>-->
-                                        <!--</div>-->
-                                        <!--</div>&lt;!&ndash;.row&ndash;&gt;-->
-                                        <!--</div>&lt;!&ndash;.item&ndash;&gt;-->
-
-                                        <!--<div class="item">-->
-                                        <!--<div class="row">-->
-                                        <!--<div class="col-md-4"><a href="#" class="thumbnail"><img-->
-                                        <!--src="images/Cha_Siu_Bao.jpg" alt="Image"></a>-->
-                                        <!--</div>-->
-                                        <!--<div class="col-md-4"><a href="#" class="thumbnail"><img-->
-                                        <!--src="images/Roast%20goose.jpg" alt="Image"></a>-->
-                                        <!--</div>-->
-                                        <!--<div class="col-md-4"><a href="#" class="thumbnail"-->
-                                        <!--style="width: 115px;"><img-->
-                                        <!--src="images/Beef%20Chow%20Fun%20.jpg"-->
-                                        <!--alt="Image"></a>-->
-                                        <!--</div>-->
-                                        <!--</div>&lt;!&ndash;.row&ndash;&gt;-->
-                                        <!--</div>&lt;!&ndash;.item&ndash;&gt;-->
-
-                                        <!--</div>&lt;!&ndash;.carousel-inner&ndash;&gt;-->
-                                        <!--&lt;!&ndash;<a data-slide="prev" href="#Carousel" class="left carousel-control"><</a>&ndash;&gt;-->
-                                        <!--&lt;!&ndash;<a data-slide="next" href="#Carousel" class="right carousel-control">></a>&ndash;&gt;-->
-                                        <!--</div>&lt;!&ndash;.Carousel&ndash;&gt;-->
-                                        <!--</div>-->
-                                        <!--</div>-->
-
                                         <div class="card-block">
                                             <div class="row">
                                                 <div>
                                                     <i class="fa fa-location-arrow detail-icons"></i>
                                                     <span class="card-subtitle detail-address"
                                                           th:text="${currentRestaurant.restaurant_address}">Restaurant_Address</span>
+
                                                 </div>
                                             </div>
                                             <div class="row" style="padding-top: 15px">
@@ -260,7 +189,7 @@
                                                 <!--<span th:if="${currentRestaurant.restaurant_seats != null}">-->
 
                                                     <!--restaurant seats will be -1 if the value is not available-->
-                                                    <span th:text="${currentRestaurant.restaurant_seats != -1} ? ${currentRestaurant.restaurant_seats} : 'not available'">Restaurant_Seats</span>
+                                                    <span th:text="${currentRestaurant.restaurant_seats != -1} ? ${currentRestaurant.restaurant_seats} : ' Seats information not available'">Restaurant_Seats</span>
                                                 <!--</span>-->
                                             </div>
 
@@ -272,8 +201,14 @@
 
                                             <div class="row" style="padding-top: 15px">
                                                 <i class="fa fa-external-link detail-icons"></i>
-                                                <span><a th:href="${currentRestaurant.websiteLink}"
-                                                         class="card-link">Restaurant Website Link</a></span>
+                                                <span>
+                                                    <div th:if="${currentRestaurant.websiteLink.equals('Not available')}">
+                                                        <div>Website information not available</div>
+                                                    </div>
+                                                    <div th:if="${!currentRestaurant.websiteLink.equals('Not available')}">
+                                                        <a th:href="${currentRestaurant.websiteLink}" class="card-link">Restaurant Website Link</a>
+                                                    </div>
+                                                </span>
                                             </div>
                                         </div>
                                     </div>
@@ -284,68 +219,69 @@
                 </div>
             </div>
 
-
             <div id="CookAtHome" class="tab-pane fade">
                 <div id="recipeView" class="container">
 
                     <div class="row">
                         <div class="col-sm-9 col-md-9">
                             <div class="card h-70" style="color: #FFFFFF">
+                                <h2>Popular Recipe For <span th:text="${currentTaste.taste_name}"></span></h2>
                                 <div class="card-top">
-                                    <!--<ul>-->
-                                        <!--<li th:each="recipe : ${recipeList}">-->
-                                            <!--<span><img th:src="${recipe.image_url}"></span>-->
-                                        <!--</li>-->
-                                    <!--</ul>-->
-
                                     <div class="row" style="padding-top: 20px">
                                         <div class="col-md-2">
-                                            <div class="thumbnail" style="width: 120px; height: 120px">
+                                            <div id="thumbnail0" class="thumbnail" style="width: 120px; height: 120px;">
                                                 <a th:href="@{'/result/' + ${currentTaste.taste_id} + '/0'  + '/0'}">
-                                                    <img th:src="${recipeList.get(0).image_url}" alt="Image"
+                                                    <img th:src="${recipeList.get(0).image_url}" alt="Image Not Available"
                                                          height="120px" width="120px">
                                                 </a>
+                                                <div class="privacy text-center" style="padding-top: 5px" th:text="${recipeList.get(0).recipe_name}"></div>
                                             </div>
                                         </div>
                                         <div class="col-md-2">
-                                            <div class="thumbnail" style="width: 120px; height: 120px">
+                                            <div id="thumbnail1" class="thumbnail" style="width: 120px; height: 120px">
                                                 <a th:href="@{'/result/' + ${currentTaste.taste_id} + '/0'  + '/1'}">
-                                                    <img th:src="${recipeList.get(1).image_url}" alt="Image"
+                                                    <img th:src="${recipeList.get(1).image_url}" alt="Image Not Available"
                                                          height="120px" width="120px">
                                                 </a>
+                                                <div class="privacy text-center" style="padding-top: 5px" th:text="${recipeList.get(1).recipe_name}"></div>
                                             </div>
                                         </div>
                                         <div class="col-md-2">
-                                            <div class="thumbnail" style="width: 120px; height: 120px">
+                                            <div id="thumbnail2" class="thumbnail" style="width: 120px; height: 120px">
                                                 <a th:href="@{'/result/' + ${currentTaste.taste_id} + '/0'  + '/2'}">
-                                                    <img th:src="${recipeList.get(2).image_url}" alt="Image"
+                                                    <img th:src="${recipeList.get(2).image_url}" alt="Image Not Available"
                                                          height="120px" width="120px">
                                                 </a>
+                                                <div class="privacy text-center" style="padding-top: 5px" th:text="${recipeList.get(2).recipe_name}"></div>
                                             </div>
                                         </div>
                                         <div class="col-md-2">
-                                            <div class="thumbnail" style="width: 120px; height: 120px">
+                                            <div id="thumbnail3" class="thumbnail" style="width: 120px; height: 120px">
                                                 <a th:href="@{'/result/' + ${currentTaste.taste_id} + '/0'  + '/3'}">
-                                                    <img th:src="${recipeList.get(3).image_url}" alt="Image"
+                                                    <img th:src="${recipeList.get(3).image_url}" alt="Image Not Available"
                                                          height="120px" width="120px">
                                                 </a>
+                                                <div class="privacy text-center" style="padding-top: 5px" th:text="${recipeList.get(3).recipe_name}"></div>
                                             </div>
                                         </div>
                                         <div class="col-md-2">
-                                            <div class="thumbnail" style="width: 120px; height: 120px">
+                                            <div id="thumbnail4" class="thumbnail" style="width: 120px; height: 120px">
                                                 <a th:href="@{'/result/' + ${currentTaste.taste_id} + '/0'  + '/4'}">
-                                                    <img th:src="${recipeList.get(4).image_url}" alt="Image"
+                                                    <img th:src="${recipeList.get(4).image_url}" alt="Image Not Available"
                                                          height="120px" width="120px">
                                                 </a>
+                                                <div class="privacy text-center" style="padding-top: 5px" th:text="${recipeList.get(4).recipe_name}"></div>
                                             </div>
                                         </div>
                                     </div><!--.row-->
                                 </div>
 
-                                <div class="card-body">
+                                <div class="card-body" style="padding-top: 40px">
                                     <div class="card-head">
                                         <div class="row">
                                             <span class="recipe-header" th:text="${currentRecipe.recipe_name}">recipe_name</span>
+                                        </div>
+                                        <div class="row">
                                             <span style="alignment:right">
                                                     Recipe search powered by
                                                 <a href='http://www.yummly.co/recipes'>
@@ -359,6 +295,7 @@
                                             <i class="fa fa-clock-o attribute-text" aria-hidden="true"></i>
                                             <span class="attribute-text">Total Cooking time:
                                                 <span th:text="${currentRecipe.total_time_in_seconds}"></span>
+                                                <span> seconds</span>
                                             </span>
                                         </div>
 
@@ -379,6 +316,9 @@
                                     </div>
 
                                     <div class="row" style="padding-top: 20px; padding-bottom: 20px">
+                                        <!--google map-->
+
+                                        <h2>Geocery Map For <span th:text="${currentTaste.taste_name}"></span></h2>
                                         <div id="mapCanvas" style="width: 100%; height: 300px; color: #FFFFFF"></div>
                                     </div>
                                 </div>
@@ -405,84 +345,6 @@
                             </div>
                         </div>
                     </div>
-
-
-                    <!-- Add Google Map -->
-                    <!--<div id="googleMap" style="height:300px;width:100%;"></div>-->
-                    <!--<script>-->
-                    <!--function myMap() {-->
-                    <!--var myCenter = new google.maps.LatLng(-37.8770, 145.0443);-->
-                    <!--var mapProp = {-->
-                    <!--center: myCenter,-->
-                    <!--zoom: 12,-->
-                    <!--scrollwheel: false,-->
-                    <!--draggable: true,-->
-                    <!--mapTypeId: google.maps.MapTypeId.ROADMAP-->
-                    <!--};-->
-                    <!--var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);-->
-                    <!--var marker = new google.maps.Marker({position: myCenter});-->
-                    <!--marker.setMap(map);-->
-                    <!--}-->
-                    <!--</script>-->
-                    <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBkJppdWRHQbcAPUfFN7Zva6tslZk5qyX4&callback=myMap"></script>-->
-                    <!--<iframe id="googleMap"-->
-                    <!--src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3152.135568621238!2d144.96099541535602!3d-37.81029344161797!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642cae2a646d1%3A0xd390b204eb6d7833!2sCentral+Grocery!5e0!3m2!1sen!2shk!4v1505806790661"-->
-                    <!--width="100%" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>-->
-
-
-                    <script th:inline="javascript">
-                        function initMap() {
-                            var map;
-                            var bounds = new google.maps.LatLngBounds();
-                            var mapOptions = {
-                                mapTypeId: 'roadmap'
-                            };
-
-                            //get value from thymeleaf
-                            var markers = [[${markers}]];
-
-                            // Display a map on the web page
-                            map = new google.maps.Map(document.getElementById("mapCanvas"), mapOptions);
-                            map.setTilt(50);
-
-                            // Add multiple markers to map
-                            var infoWindow = new google.maps.InfoWindow(), marker, i;
-
-                            // Place each marker on the map
-                            for (i = 0; i < markers.length; i++) {
-                                var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
-                                bounds.extend(position);
-                                marker = new google.maps.Marker({
-                                    position: position,
-                                    map: map,
-                                    label: markers[i][0]
-                                });
-
-                                // Add info window to marker
-                                google.maps.event.addListener(marker, 'click', (function (marker, i) {
-                                    return function () {
-                                        infoWindow.setContent(markers[i][0]);
-                                        infoWindow.open(map, marker);
-                                    }
-                                })(marker, i));
-
-                                // Center the map to fit all markers on the screen
-                                map.fitBounds(bounds);
-                            }
-
-                            // Set zoom level
-                            var boundsListener = google.maps.event.addListener((map), 'bounds_changed', function (event) {
-                                this.setZoom(14);
-                                google.maps.event.removeListener(boundsListener);
-                            });
-
-                        }
-
-                        // Load initialize function
-                        google.maps.event.addDomListener(window, 'load', initMap);
-                    </script>
-
-                    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTicqriCSJBodECDaaSdlPgbj1W76zskI&callback=initMap"></script>
                 </div>
             </div>
         </div>
@@ -511,5 +373,58 @@
         </div>
     </div>
 </footer>
+<!--google map scripts-->
+<script th:inline="javascript">
+    function initMap() {
+        var map;
+        var bounds = new google.maps.LatLngBounds();
+        var mapOptions = {
+            mapTypeId: 'roadmap'
+        };
+
+        //get value from thymeleaf
+        var markers = [[${markers}]];
+
+        // Display a map on the web page
+        map = new google.maps.Map(document.getElementById("mapCanvas"), mapOptions);
+        map.setTilt(50);
+
+        // Add multiple markers to map
+        var infoWindow = new google.maps.InfoWindow(), marker, i;
+
+        // Place each marker on the map
+        for (i = 0; i < markers.length; i++) {
+            var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
+            bounds.extend(position);
+            marker = new google.maps.Marker({
+                position: position,
+                map: map,
+                label: markers[i][0]
+            });
+
+            // Add info window to marker
+            google.maps.event.addListener(marker, 'click', (function (marker, i) {
+                return function () {
+                    infoWindow.setContent(markers[i][0]);
+                    infoWindow.open(map, marker);
+                }
+            })(marker, i));
+
+            // Center the map to fit all markers on the screen
+            map.fitBounds(bounds);
+        }
+
+        // Set zoom level
+        var boundsListener = google.maps.event.addListener((map), 'bounds_changed', function (event) {
+            this.setZoom(14);
+            google.maps.event.removeListener(boundsListener);
+        });
+
+    }
+
+    // Load initialize function
+    google.maps.event.addDomListener(window, 'load', initMap);
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTicqriCSJBodECDaaSdlPgbj1W76zskI&callback=initMap"></script>
 </body>
 </html>
