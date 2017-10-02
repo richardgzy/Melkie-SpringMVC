@@ -43,7 +43,7 @@ public class WebContextConfig {
     }
 
 //    localhost mysql datasoure, used in localhost testing
-    @Bean
+//    @Bean
 //    public DataSource getDataSource() {
 //        BasicDataSource dataSource = new BasicDataSource();
 ////        database connection settings
