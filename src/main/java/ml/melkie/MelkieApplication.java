@@ -56,8 +56,10 @@ public class MelkieApplication {
 
 	@PostMapping("/taste")
 	String index2(Model model, @RequestParam("country_id") String country_id){
+		currentCountry = countryDao.getCountryById(Integer.parseInt(country_id));
 		tasteList = tasteDao.getTasteListByCountryId(Integer.parseInt(country_id));
 
+		model.addAttribute("currentCountry", currentCountry);
 		model.addAttribute("tasteList", tasteList);
 		return "index2";
 	}
@@ -71,7 +73,6 @@ public class MelkieApplication {
 
 	@GetMapping("/result/{taste_id}/{restaurant_index_in_taste}/{recipe_index_in_taste}")
 	String result(Model model, @PathVariable String taste_id, @PathVariable String restaurant_index_in_taste, @PathVariable String recipe_index_in_taste) {
-
 		currentTaste = tasteDao.getTasteById(Integer.parseInt(taste_id));
 		currentCountry = countryDao.getCountryById(currentTaste.getCountry_id());
 

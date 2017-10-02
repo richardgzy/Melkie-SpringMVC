@@ -53,13 +53,12 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <span>
-                    <div style="font-size: x-large">
+                <h2>
+                    <strong>
                         <span th:text="${currentCountry.country_name} + '/'">country_name</span>
                         <span th:text="${currentTaste.taste_name}">taste_name</span>
-                    </div>
-                    <span style="font-size: xx-small" th:text="${currentCountry.international_student_number} + ' international students from ' + ${currentCountry.country_name} + ' in Australia!'"></span>
-                </span>
+                    </strong>
+                </h2>
 
             </div>
 
@@ -94,7 +93,6 @@
                                 width="100%" height="300" frameborder="0" allowfullscreen></iframe>
 
 
-
                         <div id="detailView" class="container">
                             <div class="row">
                                 <div class="col-md-6 col-sm-6">
@@ -124,23 +122,24 @@
                                                         </td>
                                                         <td class="col-xs-8"><span th:text="${currentTaste.taste_name}">taste_name</span>
                                                         </td>
-                                                        <td class="col-xs-2"><span th:text="${restaurant.restaurant_googleRating}">rest_likes</span>
+                                                        <td class="col-xs-2"><span
+                                                                th:text="${restaurant.restaurant_googleRating}">rest_likes</span>
                                                             <!--<i onclick="likeButtonClicked(this)" class="fa fa-thumbs-up like-button" th:id="${itrStat.index}"></i>-->
                                                             <!--<script th:inline="javascript">-->
-                                                                <!--function likeButtonClicked() {-->
-                                                                    <!--var id = event.target.id;-->
-                                                                    <!--var eee = [[${likesList}]];-->
-<!--//                                                                    alert("Thanks for your like!" + eee[id]);-->
-                                                                    <!--var number = eee[id];-->
-                                                                    <!--number++;-->
-<!--//                                                                    var value = parseInt(document.getElementById(id).getAttribute("th:text"), 10);-->
-<!--//                                                                    value = isNaN(value) ? 0 : value;-->
-<!--//                                                                    value++;-->
-                                                                    <!--document.getElementById(id).setAttribute("text", number.toString());-->
-<!--//                                disable button-->
-                                                                    <!--document.getElementById(id).disabled = true;-->
-<!--//                                alert("Thanks for your like!" + parseInt(document.getElementById(id).getAttribute("text"));-->
-                                                                <!--}-->
+                                                            <!--function likeButtonClicked() {-->
+                                                            <!--var id = event.target.id;-->
+                                                            <!--var eee = [[${likesList}]];-->
+                                                            <!--//                                                                    alert("Thanks for your like!" + eee[id]);-->
+                                                            <!--var number = eee[id];-->
+                                                            <!--number++;-->
+                                                            <!--//                                                                    var value = parseInt(document.getElementById(id).getAttribute("th:text"), 10);-->
+                                                            <!--//                                                                    value = isNaN(value) ? 0 : value;-->
+                                                            <!--//                                                                    value++;-->
+                                                            <!--document.getElementById(id).setAttribute("text", number.toString());-->
+                                                            <!--//                                disable button-->
+                                                            <!--document.getElementById(id).disabled = true;-->
+                                                            <!--//                                alert("Thanks for your like!" + parseInt(document.getElementById(id).getAttribute("text"));-->
+                                                            <!--}-->
                                                             <!--</script>-->
                                                         </td>
                                                     </tr>
@@ -186,14 +185,14 @@
                                                 <i class="fa fa-cutlery detail-icons" aria-hidden="true"></i>
                                                 <span class="card-text"> Seats Available: </span>
                                                 <!--<span th:if="${currentRestaurant.restaurant_seats == null}">-->
-                                                    <!--<span>No Seats Data Availale</span>-->
+                                                <!--<span>No Seats Data Availale</span>-->
                                                 <!--</span>-->
                                                 <!--<span th:text="${someObject.someProperty != null} ? ${someObject.someProperty} : 'null value!'">someValue</span>-->
 
                                                 <!--<span th:if="${currentRestaurant.restaurant_seats != null}">-->
 
-                                                    <!--restaurant seats will be -1 if the value is not available-->
-                                                    <span th:text="${currentRestaurant.restaurant_seats != -1} ? ${currentRestaurant.restaurant_seats} : ' Seats information not available'">Restaurant_Seats</span>
+                                                <!--restaurant seats will be -1 if the value is not available-->
+                                                <span th:text="${currentRestaurant.restaurant_seats != -1} ? ${currentRestaurant.restaurant_seats} : ' Seats information not available'">Restaurant_Seats</span>
                                                 <!--</span>-->
                                             </div>
 
@@ -204,14 +203,16 @@
                                             </div>
 
                                             <div class="row" style="padding-top: 15px">
-                                                <i class="fa fa-external-link detail-icons"></i>
                                                 <span>
-                                                    <div th:if="${currentRestaurant.websiteLink.equals('Not available')}">
-                                                        <div>Website information not available</div>
-                                                    </div>
-                                                    <div th:if="${!currentRestaurant.websiteLink.equals('Not available')}">
-                                                        <a th:href="${currentRestaurant.websiteLink}" class="card-link">Restaurant Website Link</a>
-                                                    </div>
+                                                    <i class="fa fa-external-link detail-icons"></i>
+                                                    <span>
+                                                        <span th:if="${currentRestaurant.websiteLink.equals('Not available')}">
+                                                            <span>Website information not available</span>
+                                                        </span>
+                                                        <span th:if="${!currentRestaurant.websiteLink.equals('Not available')}">
+                                                            <span><a th:href="${currentRestaurant.websiteLink}" class="card-link">Restaurant Website Link</a></span>
+                                                        </span>
+                                                    </span>
                                                 </span>
                                             </div>
                                         </div>
@@ -235,46 +236,56 @@
                                         <div class="col-md-2">
                                             <div id="thumbnail0" class="thumbnail" style="width: 120px; height: 120px;">
                                                 <a th:href="@{'/result/' + ${currentTaste.taste_id} + '/0'  + '/0'}">
-                                                    <img th:src="${recipeList.get(0).image_url}" alt="Image Not Available"
+                                                    <img th:src="${recipeList.get(0).image_url}"
+                                                         alt="Image Not Available"
                                                          height="120px" width="120px">
                                                 </a>
-                                                <div class="privacy text-center" style="padding-top: 5px" th:text="${recipeList.get(0).recipe_name}"></div>
+                                                <div class="privacy text-center" style="padding-top: 5px"
+                                                     th:text="${recipeList.get(0).recipe_name}"></div>
                                             </div>
                                         </div>
                                         <div class="col-md-2">
                                             <div id="thumbnail1" class="thumbnail" style="width: 120px; height: 120px">
                                                 <a th:href="@{'/result/' + ${currentTaste.taste_id} + '/0'  + '/1'}">
-                                                    <img th:src="${recipeList.get(1).image_url}" alt="Image Not Available"
+                                                    <img th:src="${recipeList.get(1).image_url}"
+                                                         alt="Image Not Available"
                                                          height="120px" width="120px">
                                                 </a>
-                                                <div class="privacy text-center" style="padding-top: 5px" th:text="${recipeList.get(1).recipe_name}"></div>
+                                                <div class="privacy text-center" style="padding-top: 5px"
+                                                     th:text="${recipeList.get(1).recipe_name}"></div>
                                             </div>
                                         </div>
                                         <div class="col-md-2">
                                             <div id="thumbnail2" class="thumbnail" style="width: 120px; height: 120px">
                                                 <a th:href="@{'/result/' + ${currentTaste.taste_id} + '/0'  + '/2'}">
-                                                    <img th:src="${recipeList.get(2).image_url}" alt="Image Not Available"
+                                                    <img th:src="${recipeList.get(2).image_url}"
+                                                         alt="Image Not Available"
                                                          height="120px" width="120px">
                                                 </a>
-                                                <div class="privacy text-center" style="padding-top: 5px" th:text="${recipeList.get(2).recipe_name}"></div>
+                                                <div class="privacy text-center" style="padding-top: 5px"
+                                                     th:text="${recipeList.get(2).recipe_name}"></div>
                                             </div>
                                         </div>
                                         <div class="col-md-2">
                                             <div id="thumbnail3" class="thumbnail" style="width: 120px; height: 120px">
                                                 <a th:href="@{'/result/' + ${currentTaste.taste_id} + '/0'  + '/3'}">
-                                                    <img th:src="${recipeList.get(3).image_url}" alt="Image Not Available"
+                                                    <img th:src="${recipeList.get(3).image_url}"
+                                                         alt="Image Not Available"
                                                          height="120px" width="120px">
                                                 </a>
-                                                <div class="privacy text-center" style="padding-top: 5px" th:text="${recipeList.get(3).recipe_name}"></div>
+                                                <div class="privacy text-center" style="padding-top: 5px"
+                                                     th:text="${recipeList.get(3).recipe_name}"></div>
                                             </div>
                                         </div>
                                         <div class="col-md-2">
                                             <div id="thumbnail4" class="thumbnail" style="width: 120px; height: 120px">
                                                 <a th:href="@{'/result/' + ${currentTaste.taste_id} + '/0'  + '/4'}">
-                                                    <img th:src="${recipeList.get(4).image_url}" alt="Image Not Available"
+                                                    <img th:src="${recipeList.get(4).image_url}"
+                                                         alt="Image Not Available"
                                                          height="120px" width="120px">
                                                 </a>
-                                                <div class="privacy text-center" style="padding-top: 5px" th:text="${recipeList.get(4).recipe_name}"></div>
+                                                <div class="privacy text-center" style="padding-top: 5px"
+                                                     th:text="${recipeList.get(4).recipe_name}"></div>
                                             </div>
                                         </div>
                                     </div><!--.row-->
