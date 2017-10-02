@@ -103,3 +103,8 @@ body {
 .attribute-text{
     font-size: x-large;
 }
+
+#mapCanvas {
+    width: 100%;
+    height: 100%;
+}
