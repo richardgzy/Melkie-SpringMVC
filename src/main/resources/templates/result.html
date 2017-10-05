@@ -308,7 +308,7 @@
                                     <div class="card-block">
                                         <div class="row" style="padding-top: 20px">
                                             <i class="fa fa-clock-o attribute-text" aria-hidden="true"></i>
-                                            <span class="attribute-text">Total Cooking time:
+                                            <span class="attribute-text">Total Cooking Time:
                                                 <span th:text="${currentRecipe.total_time_in_seconds}"></span>
                                                 <span> seconds</span>
                                             </span>
@@ -333,7 +333,7 @@
                                     <div class="row" style="padding-top: 20px; padding-bottom: 20px">
                                         <!--google map-->
 
-                                        <h2>Geocery Map For <span th:text="${currentTaste.taste_name} + ' ---> '"></span> <a onclick="initMap()">Show Map</a></h2>
+                                        <h2>Grocery map for <span th:text="${currentTaste.taste_name} + ' ---> '"></span> <a onclick="initMap()">Show map</a></h2>
                                         <div id="mapCanvas" style="width: 100%; height: 300px; color: #FFFFFF" onload="initMap()"></div>
                                     </div>
                                 </div>
