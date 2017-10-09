@@ -32,8 +32,8 @@
     <link href="/css/css-index.css" rel="stylesheet" media="screen">
 
     <!-- Google Fonts -->
-    <link rel="stylesheet"
-          href="http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic"/>
+    <!--<link rel="stylesheet"-->
+          <!--href="http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic"/>-->
 </head>
 
 <body data-spy="scroll" data-target="#navbar-scroll" onload="initMap()">
@@ -54,10 +54,12 @@
                     <span class="icon-bar"></span>
                 </button>
                 <h2>
-                    <strong>
-                        <span th:text="${currentCountry.country_name} + '/'">country_name</span>
-                        <span th:text="${currentTaste.taste_name}">taste_name</span>
-                    </strong>
+                    <a href="/">
+                        <strong>
+                            <span th:text="${currentCountry.country_name} + '/'">country_name</span>
+                            <span th:text="${currentTaste.taste_name}">taste_name</span>
+                        </strong>
+                    </a>
                 </h2>
 
             </div>
@@ -165,7 +167,6 @@
                                                     <i class="fa fa-location-arrow detail-icons"></i>
                                                     <span class="card-subtitle detail-address"
                                                           th:text="${currentRestaurant.restaurant_address}">Restaurant_Address</span>
-
                                                 </div>
                                             </div>
                                             <div class="row" style="padding-top: 15px">
@@ -196,11 +197,11 @@
                                                 <!--</span>-->
                                             </div>
 
-                                            <div class="row" style="padding-top: 15px">
-                                                <i class="fa fa-thumbs-up detail-icons" aria-hidden="true"></i>
-                                                <span class="card-text"> Likes in Melkie: </span>
-                                                <span th:text="${currentRestaurant.likes}">Restaurant_Likes</span>
-                                            </div>
+                                            <!--<div class="row" style="padding-top: 15px">-->
+                                                <!--<i class="fa fa-thumbs-up detail-icons" aria-hidden="true"></i>-->
+                                                <!--<span class="card-text"> Likes in Melkie: </span>-->
+                                                <!--<span th:text="${currentRestaurant.likes}">Restaurant_Likes</span>-->
+                                            <!--</div>-->
 
                                             <div class="row" style="padding-top: 15px">
                                                 <span>
@@ -226,6 +227,45 @@
 
             <div id="CookAtHome" class="tab-pane fade">
                 <div id="recipeView" class="container">
+                    <!--<script th:inline="javascript">-->
+                        <!--$( document ).ready(function() {-->
+                            <!--var url = window.location;-->
+
+                            <!--// SUBMIT FORM-->
+                            <!--$("#form1").submit(function(event) {-->
+                                <!--// Prevent the form from submitting via the browser.-->
+                                <!--event.preventDefault();-->
+                                <!--ajaxPost();-->
+                            <!--});-->
+
+                            <!--function ajaxPost(){-->
+                                <!--var index = $("#img1").val();-->
+                                <!--var formData = {-->
+                                    <!--index : index-->
+                                <!--}-->
+<!--　                              alert(formData);-->
+                                <!--$.ajax({-->
+                                    <!--type : "POST",-->
+                                    <!--contentType : "application/json",-->
+                                    <!--url : url + "/postimage",-->
+                                    <!--data : JSON.stringify(formData),-->
+                                    <!--dataType : 'json',-->
+                                    <!--success : function(result) {-->
+                                        <!--alert("You select " + index + ": " + result);-->
+                                        <!--$.each(result.data, function(i, recipe){-->
+                                            <!--var recipeName = recipe.recipe_name;-->
+                                            <!--$('#resultdiv').innerText = recipeName;-->
+                                        <!--});-->
+                                        <!--console.log(result);-->
+                                    <!--},-->
+                                    <!--error : function(e) {-->
+                                        <!--alert("Error!")-->
+                                        <!--console.log("ERROR: ", e);-->
+                                    <!--}-->
+                                <!--});-->
+                            <!--}-->
+                        <!--})-->
+                    <!--</script>-->
 
                     <div class="row">
                         <div class="col-sm-9 col-md-9">
@@ -234,7 +274,19 @@
                                 <div class="card-top">
                                     <div class="row" style="padding-top: 20px">
                                         <div class="col-md-2">
-                                            <div id="thumbnail0" class="thumbnail" style="width: 120px; height: 120px;">
+                                            <!--<form id="form1">-->
+                                            <!--<div id="thumbnail0" class="thumbnail" style="width: 120px; height: 120px;">-->
+                                                <!--<a th:href="@{'/result/' + ${currentTaste.taste_id} + '/0'  + '/0'}">-->
+                                                    <!--<input id="img1" type="image" th:src="${recipeList.get(0).image_url}" value="0"-->
+                                                         <!--alt="Image Not Available"-->
+                                                         <!--height="120px" width="120px">-->
+                                                <!--</a>-->
+                                                <!--<div class="privacy text-center" style="padding-top: 5px"-->
+                                                     <!--th:text="${recipeList.get(0).recipe_name}"></div>-->
+                                                <!--<div id="resultdiv"></div>-->
+                                            <!--</div>-->
+                                            <!--</form>-->
+                                            <div id="thumbnail0" class="thumbnail" style="width: 120px; height: 120px">
                                                 <a th:href="@{'/result/' + ${currentTaste.taste_id} + '/0'  + '/0'}">
                                                     <img th:src="${recipeList.get(0).image_url}"
                                                          alt="Image Not Available"
@@ -310,7 +362,7 @@
                                             <i class="fa fa-clock-o attribute-text" aria-hidden="true"></i>
                                             <span class="attribute-text">Total Cooking Time:
                                                 <span th:text="${currentRecipe.total_time_in_seconds}"></span>
-                                                <span> seconds</span>
+                                                <span> minutes</span>
                                             </span>
                                         </div>
 
@@ -333,7 +385,7 @@
                                     <div class="row" style="padding-top: 20px; padding-bottom: 20px">
                                         <!--google map-->
 
-                                        <h2>Grocery map for <span th:text="${currentTaste.taste_name} + ' ---> '"></span> <a onclick="initMap()">Show map</a></h2>
+                                        <h2>Grocery map for <span th:text="${currentTaste.taste_name} + ' ---> '"></span> <a onclick="initMap()" >Show map</a></h2>
                                         <div id="mapCanvas" style="width: 100%; height: 300px; color: #FFFFFF" onload="initMap()"></div>
                                     </div>
                                 </div>
@@ -435,6 +487,7 @@
             google.maps.event.removeListener(boundsListener);
         });
     }
+
     // Load initialize function
     google.maps.event.addDomListener(window, 'load', initMap);
 </script>

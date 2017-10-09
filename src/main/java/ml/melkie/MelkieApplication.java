@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 @SpringBootApplication(scanBasePackages={"ml.melkie", "ml.melkie.model"})
 @Controller
-
+//@RestController
 public class MelkieApplication {
 
 	static private ArrayList<Country> countryList = new ArrayList<>();
@@ -61,7 +61,7 @@ public class MelkieApplication {
 
 		model.addAttribute("currentCountry", currentCountry);
 		model.addAttribute("tasteList", tasteList);
-		return "index2";
+		return "taste";
 	}
 
 
@@ -150,16 +150,12 @@ public class MelkieApplication {
 		return "portfolio-item" + article_id;
 	}
 
-//	private void generateData(){
-//		Taste newTaste = new Taste(1, "Cantonese Food", 1);
-//		tasteList.add(newTaste);
+//	@RequestMapping(value = "/postimage", method = RequestMethod.POST)
+//	public Response postRecipe(@RequestBody String index) {
+//		ArrayList<Recipe> recipeList = MelkieApplication.recipeList;
 //
-////		restaurantList = restaurantDao.getRestaurantsByTaste(newTaste.getTaste_name());
-//
-//		//append information from google to the currentRestaurant
-//		currentRestaurant = new Restaurant(1,"TimhoWannn", 22, "ChIJSS5p7clC1moRGPUzkMpfKpM");
-//		String placeId = currentRestaurant.getRestaurant_placeID();
-//		String data = APIManager.getRestaurantData(placeId);
-//		currentRestaurant = JsonParser.parseRestaurantinfo(data, currentRestaurant);
+//		Response response = new Response("Done", recipeList.get(Integer.parseInt(index)));
+//		return response;
 //	}
+
 }

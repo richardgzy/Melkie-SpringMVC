@@ -18,20 +18,28 @@ public class JsonParser {
             String status = jo.getString("status");
             if (status.equals("OK")){
                 JSONObject result = jo.getJSONObject("result");
+                //check address
+                String formatted_address = "Not available";
+                if(result.has("formatted_address")){
+                    formatted_address = result.getString("formatted_address");
+                }
 
-                String formatted_address = result.getString("formatted_address");
-                Double google_rating = result.getDouble("rating");
-                String phone_number = "";
+                //check rating
+                Double google_rating = 0.0;
+                if(result.has("rating")){
+                    google_rating = result.getDouble("rating");
+                }
+
+                //check phone number
+                String phone_number = "Not available";
                 if(result.has("formatted_phone_number")){
                     phone_number = result.getString("formatted_phone_number");
-                }else{
-                    phone_number = "Not available";
                 }
-                String website_link = "";
+
+                //check website link
+                String website_link = "Not available";
                 if(result.has("website")){
                     website_link = result.getString("website");
-                }else{
-                    website_link = "Not available";
                 }
 
                 incompleteRestaurant.setRestaurant_address(formatted_address);
@@ -71,7 +79,10 @@ public class JsonParser {
             incompleteRecipe.setImage_url(imageUrl);
             incompleteRecipe.setIngredients(ingredients);
             incompleteRecipe.setRecipe_yummly_rating(rating);
-            incompleteRecipe.setTotal_time_in_seconds(total_time_in_seconds);
+
+            Double minutes = Double.parseDouble(total_time_in_seconds)/60;
+            String minutesString = minutes.toString();
+            incompleteRecipe.setTotal_time_in_seconds(minutesString);
 
 
         } catch (Exception e) {
