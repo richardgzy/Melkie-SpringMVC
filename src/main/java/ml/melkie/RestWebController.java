@@ -29,12 +29,11 @@ public class RestWebController {
         Response response = new Response("Done", customer);
         return response;
     }
-//
-//    @RequestMapping(value = "/postimage", method = RequestMethod.POST)
-//    public Response postRecipe(@RequestBody String index) {
-//        ArrayList<Recipe> recipeList = MelkieApplication.recipeList;
-//
-//        Response response = new Response("Done", "hi");
-//        return response;
-//    }
+
+    @RequestMapping(value = "/postimage", method = RequestMethod.POST)
+    public Response postRecipe(@RequestBody String index) {
+        ArrayList<Recipe> recipeList = MelkieApplication.recipeList;
+        Response response = new Response("Done", recipeList.get(Integer.parseInt(index)));
+        return response;
+    }
 }

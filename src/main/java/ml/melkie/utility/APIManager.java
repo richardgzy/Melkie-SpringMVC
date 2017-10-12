@@ -81,22 +81,10 @@ public class APIManager {
         return getDataFromUrl(query);
     }
 
-//    public static ArrayList<String> getRestaurantImage(ArrayList<String> photoReferenceList) {
-//        for (String s : photoReferenceList){
-//            String query = googlePhotorequestUrl + restaurantPhotoMaxHeight + restaurantPhotoMaxWidth + googleAPIKey;
-//
-//        }
-//
-//        return ;
-//    }
-
     public static String getRecipeData(String recipeName) {
-
         String query = yummlyrequestUrl + yummlyApplicationID + yummlyApplicationKey + "&q=" + recipeName.replaceAll(" ", "%20") + yummlyMaxResult + yummlyRequeirePictures + yummlyRequireSourceSiteUrl;
 
 //        String da = HttpRequest.get(query).body();
-
-
         return getDataFromUrl(query);
     }
 }

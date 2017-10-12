@@ -23,7 +23,7 @@ public class MelkieApplication {
 	static private ArrayList<Country> countryList = new ArrayList<>();
 	static private ArrayList<Taste> tasteList = new ArrayList<>();
 	static private ArrayList<Restaurant> restaurantList  = new ArrayList<>();
-	static private ArrayList<Recipe> recipeList  = new ArrayList<>();
+	static public ArrayList<Recipe> recipeList  = new ArrayList<>();
 	static private ArrayList<Grocery> groceryList  = new ArrayList<>();
 
 	static private Country currentCountry;
@@ -149,13 +149,5 @@ public class MelkieApplication {
 	String findArticles(@PathVariable String article_id) {
 		return "portfolio-item" + article_id;
 	}
-
-//	@RequestMapping(value = "/postimage", method = RequestMethod.POST)
-//	public Response postRecipe(@RequestBody String index) {
-//		ArrayList<Recipe> recipeList = MelkieApplication.recipeList;
-//
-//		Response response = new Response("Done", recipeList.get(Integer.parseInt(index)));
-//		return response;
-//	}
 
 }

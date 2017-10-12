@@ -32,8 +32,8 @@
     <link href="/css/css-index.css" rel="stylesheet" media="screen">
 
     <!-- Google Fonts -->
-    <!--<link rel="stylesheet"-->
-          <!--href="http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic"/>-->
+    <link rel="stylesheet"
+          href="http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic"/>
 </head>
 
 <body data-spy="scroll" data-target="#navbar-scroll" onload="initMap()">
@@ -76,7 +76,6 @@
 <div class="fullscreen landing parallax" style="background-image:url('/images/brooke-lark-230140.jpg');"
      data-img-width="2000" data-img-height="1333" data-diff="100">
     <div class="overlay">
-
         <!-- /.main section -->
         <div>
             <ul class="nav nav-tabs nav-justified">
@@ -227,118 +226,159 @@
 
             <div id="CookAtHome" class="tab-pane fade">
                 <div id="recipeView" class="container">
-                    <!--<script th:inline="javascript">-->
-                        <!--$( document ).ready(function() {-->
-                            <!--var url = window.location;-->
+                    <script th:inline="javascript">
+                        $( document ).ready(function() {
+                            var url = window.location;
 
-                            <!--// SUBMIT FORM-->
-                            <!--$("#form1").submit(function(event) {-->
-                                <!--// Prevent the form from submitting via the browser.-->
-                                <!--event.preventDefault();-->
-                                <!--ajaxPost();-->
-                            <!--});-->
+                            // SUBMIT FORM
+                            $('#form1').submit(function(event) {
+                                // Prevent the form from submitting via the browser.
+                                event.preventDefault();
+                                var index = $('#img1').val();
+                                ajaxPost(index);
+                            });
+                            $('#form2').submit(function(event) {
+                                // Prevent the form from submitting via the browser.
+                                event.preventDefault();
+                                var index = $('#img2').val();
+                                ajaxPost(index);
+                            });
+                            $('#form3').submit(function(event) {
+                                // Prevent the form from submitting via the browser.
+                                event.preventDefault();
+                                var index = $('#img3').val();
+                                ajaxPost(index);
+                            });
+                            $('#form4').submit(function(event) {
+                                // Prevent the form from submitting via the browser.
+                                event.preventDefault();
+                                var index = $('#img4').val();
+                                ajaxPost(index);
+                            });
+                            $('#form5').submit(function(event) {
+                                // Prevent the form from submitting via the browser.
+                                event.preventDefault();
+                                var index = $('#img5').val();
+                                ajaxPost(index);
+                            });
 
-                            <!--function ajaxPost(){-->
-                                <!--var index = $("#img1").val();-->
-                                <!--var formData = {-->
-                                    <!--index : index-->
-                                <!--}-->
-<!--　                              alert(formData);-->
-                                <!--$.ajax({-->
-                                    <!--type : "POST",-->
-                                    <!--contentType : "application/json",-->
-                                    <!--url : url + "/postimage",-->
-                                    <!--data : JSON.stringify(formData),-->
-                                    <!--dataType : 'json',-->
-                                    <!--success : function(result) {-->
-                                        <!--alert("You select " + index + ": " + result);-->
-                                        <!--$.each(result.data, function(i, recipe){-->
-                                            <!--var recipeName = recipe.recipe_name;-->
-                                            <!--$('#resultdiv').innerText = recipeName;-->
-                                        <!--});-->
-                                        <!--console.log(result);-->
-                                    <!--},-->
-                                    <!--error : function(e) {-->
-                                        <!--alert("Error!")-->
-                                        <!--console.log("ERROR: ", e);-->
-                                    <!--}-->
-                                <!--});-->
-                            <!--}-->
-                        <!--})-->
-                    <!--</script>-->
+                            function ajaxPost(index){
+                                $.ajax({
+                                    type : "POST",
+                                    contentType : "application/json",
+                                    url : "/postimage",
+//                                    data : JSON.stringify(formData),
+                                    data : index,
+                                    dataType : 'json',
+                                    success : function(result) {
+                                        $('#recipe_name').html("<span id=\"recipe_name\" class=\"recipe-header\">" + result.data.recipe_name +  "</span>");
+                                        $('#recipe_time').html("<span id=\"recipe_time\">" + result.data.total_time_in_seconds + "</span>");
+                                        $('#recipe_yummly_rating').html("<span id=\"recipe_yummly_rating\">" + result.data.recipe_yummly_rating + "</span>");
+//                                        $('#direction_link').html("<form id=\"direction_link\" action=\"" + result.data.direction_link + "\">" +
+//                                                                    "<button class=\"btn btn-warning btn-block btn-lg\" type=\"submit\">Get Recipe Instructions</button>" +
+//                                                                    "</form>");
+                                        $('#direction_link').html("<a style='font-size: x-large' href='" + result.data.direction_link +"'>Get Recipe Instructions</a>");
 
+                                        var ingredients = result.data.ingredients;
+                                        $('#ingredients').html(makeUL(ingredients));
+                                        $('#ingredients').id = 'ingredients';
+                                    },
+                                    error : function(e) {
+                                        alert("Error!")
+                                        console.log("ERROR: ", e);
+                                    }
+                                });
+                            }
+                        })
+
+                        function makeUL(array) {
+                            // Create the list element:
+                            var list = document.createElement('ul');
+                            list.style.listStyleType = 'circle';
+                            for(var i = 0; i < array.length; i++) {
+                                // Create the list item:
+                                var item = document.createElement('li');
+                                // Set its contents:
+                                item.innerText = array[i];
+//                                item.appendChild(document.createTextNode(array[i]));
+                                // Add it to the list:
+                                list.appendChild(item);
+                            }
+
+                            // Finally, return the constructed list:
+                            return list;
+                        }
+                    </script>
                     <div class="row">
                         <div class="col-sm-9 col-md-9">
                             <div class="card h-70" style="color: #FFFFFF">
-                                <h2>Popular Recipe For <span th:text="${currentTaste.taste_name}"></span></h2>
+                                <h2>Popular Recipe for <span th:text="${currentTaste.taste_name}"></span></h2>
                                 <div class="card-top">
                                     <div class="row" style="padding-top: 20px">
                                         <div class="col-md-2">
-                                            <!--<form id="form1">-->
-                                            <!--<div id="thumbnail0" class="thumbnail" style="width: 120px; height: 120px;">-->
-                                                <!--<a th:href="@{'/result/' + ${currentTaste.taste_id} + '/0'  + '/0'}">-->
-                                                    <!--<input id="img1" type="image" th:src="${recipeList.get(0).image_url}" value="0"-->
-                                                         <!--alt="Image Not Available"-->
-                                                         <!--height="120px" width="120px">-->
-                                                <!--</a>-->
-                                                <!--<div class="privacy text-center" style="padding-top: 5px"-->
-                                                     <!--th:text="${recipeList.get(0).recipe_name}"></div>-->
-                                                <!--<div id="resultdiv"></div>-->
-                                            <!--</div>-->
-                                            <!--</form>-->
-                                            <div id="thumbnail0" class="thumbnail" style="width: 120px; height: 120px">
+                                            <form id="form1" name="imgform">
+                                            <div id="thumbnail0" class="thumbnail" style="width: 120px; height: 120px;">
                                                 <a th:href="@{'/result/' + ${currentTaste.taste_id} + '/0'  + '/0'}">
-                                                    <img th:src="${recipeList.get(0).image_url}"
+                                                    <input id="img1" name="recipeimg" type="image" th:src="${recipeList.get(0).image_url}" value="0"
                                                          alt="Image Not Available"
-                                                         height="120px" width="120px">
+                                                         height="110px" width="110px">
                                                 </a>
-                                                <div class="privacy text-center" style="padding-top: 5px"
+                                                <div id="recipe0" class="privacy text-center" style="padding-top: 5px"
                                                      th:text="${recipeList.get(0).recipe_name}"></div>
                                             </div>
+                                            </form>
                                         </div>
                                         <div class="col-md-2">
-                                            <div id="thumbnail1" class="thumbnail" style="width: 120px; height: 120px">
-                                                <a th:href="@{'/result/' + ${currentTaste.taste_id} + '/0'  + '/1'}">
-                                                    <img th:src="${recipeList.get(1).image_url}"
-                                                         alt="Image Not Available"
-                                                         height="120px" width="120px">
-                                                </a>
-                                                <div class="privacy text-center" style="padding-top: 5px"
-                                                     th:text="${recipeList.get(1).recipe_name}"></div>
-                                            </div>
+                                            <form id="form2" name="imgform">
+                                                <div id="thumbnail1" class="thumbnail" style="width: 120px; height: 120px;">
+                                                    <a th:href="@{'/result/' + ${currentTaste.taste_id} + '/0'  + '/1'}">
+                                                        <input id="img2" name="recipeimg" type="image" th:src="${recipeList.get(1).image_url}" value="1"
+                                                               alt="Image Not Available"
+                                                               height="110px" width="110px">
+                                                    </a>
+                                                    <div id="recipe1" class="privacy text-center" style="padding-top: 5px"
+                                                         th:text="${recipeList.get(1).recipe_name}"></div>
+                                                </div>
+                                            </form>
                                         </div>
                                         <div class="col-md-2">
-                                            <div id="thumbnail2" class="thumbnail" style="width: 120px; height: 120px">
-                                                <a th:href="@{'/result/' + ${currentTaste.taste_id} + '/0'  + '/2'}">
-                                                    <img th:src="${recipeList.get(2).image_url}"
-                                                         alt="Image Not Available"
-                                                         height="120px" width="120px">
-                                                </a>
-                                                <div class="privacy text-center" style="padding-top: 5px"
-                                                     th:text="${recipeList.get(2).recipe_name}"></div>
-                                            </div>
+                                            <form id="form3" name="imgform">
+                                                <div id="thumbnail3" class="thumbnail" style="width: 120px; height: 120px;">
+                                                    <a th:href="@{'/result/' + ${currentTaste.taste_id} + '/0'  + '/2'}">
+                                                        <input id="img3" name="recipeimg" type="image" th:src="${recipeList.get(2).image_url}" value="2"
+                                                               alt="Image Not Available"
+                                                               height="110px" width="110px">
+                                                    </a>
+                                                    <div id="recipe2" class="privacy text-center" style="padding-top: 5px"
+                                                         th:text="${recipeList.get(2).recipe_name}"></div>
+                                                </div>
+                                            </form>
                                         </div>
                                         <div class="col-md-2">
-                                            <div id="thumbnail3" class="thumbnail" style="width: 120px; height: 120px">
-                                                <a th:href="@{'/result/' + ${currentTaste.taste_id} + '/0'  + '/3'}">
-                                                    <img th:src="${recipeList.get(3).image_url}"
-                                                         alt="Image Not Available"
-                                                         height="120px" width="120px">
-                                                </a>
-                                                <div class="privacy text-center" style="padding-top: 5px"
-                                                     th:text="${recipeList.get(3).recipe_name}"></div>
-                                            </div>
+                                            <form id="form4" name="imgform">
+                                                <div id="thumbnail4" class="thumbnail" style="width: 120px; height: 120px;">
+                                                    <a th:href="@{'/result/' + ${currentTaste.taste_id} + '/0'  + '/3'}">
+                                                        <input id="img4" name="recipeimg" type="image" th:src="${recipeList.get(3).image_url}" value="3"
+                                                               alt="Image Not Available"
+                                                               height="110px" width="110px">
+                                                    </a>
+                                                    <div id="recipe3" class="privacy text-center" style="padding-top: 5px"
+                                                         th:text="${recipeList.get(3).recipe_name}"></div>
+                                                </div>
+                                            </form>
                                         </div>
                                         <div class="col-md-2">
-                                            <div id="thumbnail4" class="thumbnail" style="width: 120px; height: 120px">
-                                                <a th:href="@{'/result/' + ${currentTaste.taste_id} + '/0'  + '/4'}">
-                                                    <img th:src="${recipeList.get(4).image_url}"
-                                                         alt="Image Not Available"
-                                                         height="120px" width="120px">
-                                                </a>
-                                                <div class="privacy text-center" style="padding-top: 5px"
-                                                     th:text="${recipeList.get(4).recipe_name}"></div>
-                                            </div>
+                                            <form id="form5" name="imgform">
+                                                <div id="thumbnail5" class="thumbnail" style="width: 120px; height: 120px;">
+                                                    <a th:href="@{'/result/' + ${currentTaste.taste_id} + '/0'  + '/4'}">
+                                                        <input id="img5" name="recipeimg" type="image" th:src="${recipeList.get(4).image_url}" value="4"
+                                                               alt="Image Not Available"
+                                                               height="110px" width="110px">
+                                                    </a>
+                                                    <div id="recipe4" class="privacy text-center" style="padding-top: 5px"
+                                                         th:text="${recipeList.get(4).recipe_name}"></div>
+                                                </div>
+                                            </form>
                                         </div>
                                     </div><!--.row-->
                                 </div>
@@ -346,7 +386,7 @@
                                 <div class="card-body" style="padding-top: 40px">
                                     <div class="card-head">
                                         <div class="row">
-                                            <span class="recipe-header" th:text="${currentRecipe.recipe_name}">recipe_name</span>
+                                            <span id="recipe_name" class="recipe-header" th:text="${currentRecipe.recipe_name}">recipe_name</span>
                                         </div>
                                         <div class="row">
                                             <span style="alignment:right">
@@ -361,7 +401,7 @@
                                         <div class="row" style="padding-top: 20px">
                                             <i class="fa fa-clock-o attribute-text" aria-hidden="true"></i>
                                             <span class="attribute-text">Total Cooking Time:
-                                                <span th:text="${currentRecipe.total_time_in_seconds}"></span>
+                                                <span id="recipe_time" th:text="${currentRecipe.total_time_in_seconds}"></span>
                                                 <span> minutes</span>
                                             </span>
                                         </div>
@@ -369,17 +409,13 @@
                                         <div class="row" style="padding-top: 15px">
                                             <i class="fa fa-smile-o attribute-text" aria-hidden="true"></i>
                                             <span class="attribute-text">Yummly Rating:
-                                                <span th:text="${currentRecipe.recipe_yummly_rating}"></span>
+                                                <span id="recipe_yummly_rating" th:text="${currentRecipe.recipe_yummly_rating}"></span>
                                             </span>
                                         </div>
                                     </div>
 
                                     <div class="row" style="padding-top: 20px">
-                                        <form th:action="${currentRecipe.direction_link}">
-                                            <button class="btn btn-warning btn-block btn-lg" style="align-self: center"
-                                                    type="submit">Get Recipe Direction
-                                            </button>
-                                        </form>
+                                        <a style="font-size: x-large; color: orange" th:href="${currentRecipe.direction_link}">---> Get Recipe Direction</a>
                                     </div>
 
                                     <div class="row" style="padding-top: 20px; padding-bottom: 20px">
@@ -395,9 +431,9 @@
                             <div class="panel panel-success">
                                 <div class="panel-heading">Ingredients</div>
                                 <div class="panel-body">
-                                    <ul>
+                                    <ul class="bulletpoints" id="ingredients">
                                         <li th:each="ingredient : ${currentRecipe.ingredients}">
-                                            <input id="checkBox" type="checkbox">
+                                            <!--<input type="checkbox">-->
                                             <span th:text="${ingredient}"></span>
                                         </li>
                                     </ul>
@@ -423,18 +459,18 @@
     <div class="container">
         <div class="col-sm-4 col-sm-offset-4">
             <!-- /.social links -->
-            <div class="social text-center">
-                <ul>
-                    <li><a class="wow fadeInUp" href="https://twitter.com/"><i class="fa fa-twitter"></i></a>
-                    </li>
-                    <li><a class="wow fadeInUp" href="https://www.facebook.com/" data-wow-delay="0.2s"><i
-                            class="fa fa-facebook"></i></a></li>
-                    <li><a class="wow fadeInUp" href="https://plus.google.com/" data-wow-delay="0.4s"><i
-                            class="fa fa-google-plus"></i></a></li>
-                    <li><a class="wow fadeInUp" href="https://instagram.com/" data-wow-delay="0.6s"><i
-                            class="fa fa-instagram"></i></a></li>
-                </ul>
-            </div>
+            <!--<div class="social text-center">-->
+                <!--<ul>-->
+                    <!--<li><a class="wow fadeInUp" href="https://twitter.com/"><i class="fa fa-twitter"></i></a>-->
+                    <!--</li>-->
+                    <!--<li><a class="wow fadeInUp" href="https://www.facebook.com/" data-wow-delay="0.2s"><i-->
+                            <!--class="fa fa-facebook"></i></a></li>-->
+                    <!--<li><a class="wow fadeInUp" href="https://plus.google.com/" data-wow-delay="0.4s"><i-->
+                            <!--class="fa fa-google-plus"></i></a></li>-->
+                    <!--<li><a class="wow fadeInUp" href="https://instagram.com/" data-wow-delay="0.6s"><i-->
+                            <!--class="fa fa-instagram"></i></a></li>-->
+                <!--</ul>-->
+            <!--</div>-->
             <div class="text-center wow fadeInUp" style="font-size: 14px;">Copyright Team Supreme 2017</div>
             <a href="#" class="scrollToTop"><i class="pe-7s-up-arrow pe-va"></i></a>
         </div>
@@ -457,22 +493,24 @@
         map.setTilt(50);
 
         // Add multiple markers to map
-        var infoWindow = new google.maps.InfoWindow(), marker, i;
+//        var infoWindow = new google.maps.InfoWindow(), marker, i;
 
         // Place each marker on the map
         for (i = 0; i < markers.length; i++) {
             var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
-            bounds.extend(position);
             marker = new google.maps.Marker({
                 position: position,
-                map: map,
-                label: markers[i][0]
+                map: map
             });
+            bounds.extend(position);
 
             // Add info window to marker
             google.maps.event.addListener(marker, 'click', (function (marker, i) {
                 return function () {
-                    infoWindow.setContent(markers[i][0]);
+                    var contentString = '<h3 style="color: black">' + markers[i][0] + '</h3>';
+                    var infoWindow = new google.maps.InfoWindow({
+                        content: contentString
+                    });
                     infoWindow.open(map, marker);
                 }
             })(marker, i));
@@ -480,7 +518,6 @@
             // Center the map to fit all markers on the screen
             map.fitBounds(bounds);
         }
-
         // Set zoom level
         var boundsListener = google.maps.event.addListener((map), 'bounds_changed', function (event) {
             this.setZoom(14);
