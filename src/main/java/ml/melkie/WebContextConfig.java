@@ -17,7 +17,6 @@ import java.net.URISyntaxException;
 @MapperScan(basePackages = "ml.melkie.model")
 @ComponentScan(basePackages = "ml.melkie.model")
 public class WebContextConfig {
-
 //    heroku clear db datasource. used in deployment
     @Bean
     public BasicDataSource getDataSource() throws URISyntaxException {
